@@ -1,4 +1,4 @@
-require "src.imports"
+require "imports"
 
 function love.load()
     config.createWindow()
