@@ -1,0 +1,117 @@
+powerups = {
+    ox = sprites.crate:getWidth() / 2, 
+    oy = sprites.crate:getHeight() / 2,
+}
+powerups.list = {}
+powerups.toRemove = {}
+powerups.definitions = {
+    turbo = {sprite = sprites.pu_turbo, chance = 1},
+    mine = {sprite = sprites.pu_mine, chance = 100},
+    health = {sprite = sprites.pu_health, chance = 1},
+    machinegun = {sprite = sprites.pu_machinegun, chance = 1},
+}
+powerups.rollTable = {}
+
+for name, definition in pairs(powerups.definitions) do
+    local amount = definition.chance
+    while amount > 0 do
+        amount = amount - 1
+        table.insert(powerups.rollTable, name)
+    end
+end
+
+function powerups.new()
+    local powerup = {
+        x = (love.math.random() * 2 - 1) * bounds.halfSize * 0.7,
+        y = (love.math.random() * 2 - 1) * bounds.halfSize * 0.7,
+        r = 0,
+        vr = 0,
+        ar = 0.001,
+        s = 1,
+        scaleAngle = love.math.random() * math.pi2,
+        age = love.math.random() * 60,
+        collider = hc.circle(0, 0, powerups.ox * 1.2),
+        baseScale = 0,
+    }
+    powerup.collider:moveTo(powerup.x, powerup.y)
+    powerup.collider.class = 'powerup'
+    powerup.collider.parent = powerup
+    table.insert(powerups.list, powerup)
+end
+
+function powerups.draw()
+    for i, powerup in ipairs(powerups.list) do
+        love.graphics.draw(sprites.crate, powerup.x, powerup.y, powerup.r, powerup.s, powerup.s, powerups.ox, powerups.oy)
+        if config.showColliders then powerup.collider:draw('line') end
+    end
+end
+
+function powerups.update()
+    if #powerups.list < config.powerups.amt then powerups.new() end
+
+    for i, powerup in ipairs(powerups.list) do
+        powerup.r = powerup.r + powerup.vr
+        powerup.vr = (powerup.vr + powerup.ar * love.math.random()) * 0.95
+
+        powerup.scaleAngle = powerup.scaleAngle + 0.05
+        powerup.s = math.sin(powerup.scaleAngle) * 0.07 + powerup.baseScale
+
+        powerup.age = powerup.age + 1
+        local ageRatio = powerup.age / config.powerups.maxAge
+        if ageRatio > 0.9 then
+            powerup.baseScale = (1 - ageRatio) * 10
+        elseif ageRatio < 0.1 then
+            powerup.baseScale = (ageRatio) * 10
+        end
+        if powerup.age > config.powerups.maxAge then powerups.remove(powerup) end
+
+        collisions.handlePowerup(powerup)
+    end
+
+    if #powerups.toRemove > 0 then
+        for index, powerupsToRemove in ipairs(powerups.toRemove) do
+            local foundIndex = -1
+            for i, powerup in ipairs(powerups.list) do
+                if powerup == powerupsToRemove then
+                    foundIndex = i 
+                    break
+                end
+            end
+            if foundIndex > -1 then table.remove(powerups.list, foundIndex) end
+        end
+        powerups.toRemove = {}
+    end
+end
+
+function powerups.remove(powerup)
+    hc.remove(powerup.collider)
+    table.insert(powerups.toRemove, powerup)
+end
+
+function powerups.get(ship)
+    local index = math.ceil(love.math.random() * #powerups.rollTable)
+    local powerup = powerups.rollTable[index]
+    gui.setLeftIcon(ship.canvas.ui, powerups.definitions[powerup].sprite)
+    if powerup == 'mine' then ship.mines = config.powerups.mineAmt end
+    return powerup
+end
+
+function powerups.apply(ship)
+    gui.useLeftIcon(ship.canvas.ui)
+    if(ship.powerup == 'turbo') then
+        sounds.stopAndPlay(sounds.gust)
+        ship.turboForce = config.powerups.turboForce
+    elseif(ship.powerup == 'health') then
+        sounds.stopAndPlay(sounds.repair)
+        ships.damage(ship, -config.powerups.healthIncrease)
+    elseif(ship.powerup == 'machinegun') then
+        sounds.stopAndPlay(sounds.cannonsReady)
+        ship.machinegunFrames = config.powerups.machinegunTime
+    elseif(ship.powerup == 'mine') then
+        sounds.splash()
+        ship.mines = ship.mines - 1
+        local posX = math.cos(ship.r + math.pi) * 65 + ship.x
+        local posY = math.sin(ship.r + math.pi) * 65 + ship.y
+        mines.new(posX, posY)
+    end
+end
