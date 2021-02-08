@@ -2,15 +2,16 @@ require "imports"
 
 function love.load()
     config.createWindow()
+    gamestates.setActive(game)
 end
  
 function love.draw()
-    gamestates.active.draw()
+    gamestates.draw()
     fps.draw()
 end
     
 function love.update(dt)
-    gamestates.active.update(dt)
+    gamestates.update(dt)
     fps.update(dt)
 end
 

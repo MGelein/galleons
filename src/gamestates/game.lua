@@ -1,22 +1,17 @@
-gamestates = {}
-gamestates.game = {scoringMode = 'points'} -- scoringMode = points | places
-gamestates.mainmenu = {}
-gamestates.playermenu = {}
-gamestates.gamemenu = {}
+game = {scoringMode = 'points'} -- scoringMode = points | places
 
-function gamestates.game.load()
+function game.load()
     level.create()
     ships.create({A = 'green', B = 'red'})
-    -- ships.create({A = 'green', B = 'red', C = 'yellow', D = 'blue'})
     screens.create()
     countdown.start(config.game.roundTime)
 end
 
-function gamestates.game.draw()
-    screens.draw(gamestates.game.screenDraw)
+function game.draw()
+    screens.draw(game.screenDraw)
 end
 
-function gamestates.game.screenDraw(screen)
+function game.screenDraw(screen)
     level.draw(screen)
     splash.draw()
     powerups.draw()
@@ -26,7 +21,7 @@ function gamestates.game.screenDraw(screen)
     explosions.draw()
 end
 
-function gamestates.game.update(dt)
+function game.update(dt)
     screens.update()
     splash.update()
     ships.update()
@@ -35,20 +30,20 @@ function gamestates.game.update(dt)
     powerups.update()
     mines.update()
     
-    if gamestates.game.scoringMode == 'places' then
-        gamestates.game.calculatePlaceOrder()
+    if game.scoringMode == 'places' then
+        game.calculatePlaceOrder()
     else
-        gamestates.game.setUIScores()
+        game.setUIScores()
     end
 end
 
-function gamestates.game.setUIScores()
+function game.setUIScores()
     for i, ship in ipairs(ships.list) do
         ships.setUIScore(ship)
     end
 end
 
-function gamestates.game.calculatePlaceOrder()
+function game.calculatePlaceOrder()
     local inOrder = {ships.list[1]}
     for i=2, #ships.list do
         local ship = ships.list[i]
@@ -67,10 +62,3 @@ function gamestates.game.calculatePlaceOrder()
         ships.setPlace(inOrder[i], i)
     end
 end
-
-function gamestates.setActive(newState)
-    gamestates.active = newState
-    newState.load()
-end
-
-gamestates.setActive(gamestates.game)

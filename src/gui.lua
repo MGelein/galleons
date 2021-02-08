@@ -67,7 +67,7 @@ end
 function gui.drawOutlinedString(ui, x, y)
     local color = ui.accentColor
     local string = ui.scoreValue .. ' pts'
-    if gamestates.game.scoringMode == 'places' then string = gui.getPlaceName(ui.scoreValue) end
+    if game.scoringMode == 'places' then string = gui.getPlaceName(ui.scoreValue) end
 
     local offset = minimap.size
     love.graphics.draw(sprites.ui_tile_wide, x - offset, y - offset / 2)
