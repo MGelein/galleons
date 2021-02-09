@@ -1,5 +1,6 @@
 countdown = {s = 1, scaleAcc = 0}
 countdown.sprite = sprites.ui_tile_wide
+countdown.timeString = "99:99"
 countdown.ox = countdown.sprite:getWidth() / 2
 countdown.oy = countdown.sprite:getHeight() / 2
 

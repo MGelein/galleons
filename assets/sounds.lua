@@ -41,6 +41,7 @@ sounds = {
     repair = audioClip('repair'),
     cannonsReady = audioClip('cannonsReady'),
     explosion = audioClip('explosion'),
+    transition = audioClip('transitionwave'),
 
     bgm = audioStream('music'),
     sea = audioStream('waves'),
@@ -115,4 +116,10 @@ end
 function sounds.stopAmbience()
     sounds.sea:stop()
     sounds.battle:stop()
+end
+
+function sounds.playTransition()
+    sounds.transition:stop()
+    sounds.transition:setVolume(0.2)
+    sounds.transition:play()
 end

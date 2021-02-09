@@ -29,6 +29,7 @@ sprites = {
     heart_empty = png("ui/empty_heart"),
 
     seabg= png("seabg"),
+    transition = png("transition"),
 
     cannon = png("cannon/cannon"),
     mountedCannon = png("cannon/cannon_mounted"),

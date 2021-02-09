@@ -12,7 +12,6 @@ function level.create()
     bounds.create()
     spawns.create()
     sounds.playAmbience()
-    sounds.playBGM()
 end
 
 function level.draw(screen)

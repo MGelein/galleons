@@ -4,7 +4,11 @@ function game.load()
     level.create()
     ships.create({A = 'green', B = 'red'})
     screens.create()
+end
+
+function game.start()
     countdown.start(config.game.roundTime)
+    sounds.playBGM()
 end
 
 function game.draw()
