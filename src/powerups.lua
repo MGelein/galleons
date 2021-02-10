@@ -112,6 +112,6 @@ function powerups.apply(ship)
         ship.mines = ship.mines - 1
         local posX = math.cos(ship.r + math.pi) * 65 + ship.x
         local posY = math.sin(ship.r + math.pi) * 65 + ship.y
-        mines.new(posX, posY)
+        mines.new(ship, posX, posY)
     end
 end

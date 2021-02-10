@@ -15,9 +15,9 @@ function collisions.handleShip(ship)
             if ship.powerup == 'none' then ship.powerup = powerups.get(ship) end
         elseif shape.class == 'mine' then
             mines.detonate(shape.parent)
-            ships.damage(ship, config.powerups.mineDamage / 4)
+            ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
         elseif shape.class == 'shockwave' then
-            ships.damage(ship, config.powerups.mineDamage / 4)
+            ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
         end
     end
 end
@@ -45,7 +45,7 @@ function collisions.handleBullet(bullet)
             end
 
             if shape.class == 'ship' then
-                ships.damage(shape.parent, 1)
+                ships.damageByAndScore(shape.class, bullet.ship, 1)
             elseif shape.class == 'powerup' then
                 powerups.remove(shape.parent)
             end

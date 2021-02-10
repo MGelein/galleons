@@ -7,8 +7,9 @@ mines.toRemove = {}
 mines.shockwaves = {}
 mines.shockwavesToRemove = {}
 
-function mines.new(newX, newY)
+function mines.new(parent, newX, newY)
     local mine = {
+        ship = parent,
         detonated = false,
         x = newX,
         y = newY,
@@ -107,6 +108,7 @@ function mines.detonate(mine)
     mine.age = mine.ttl - 30
     for i = 1, 3 do
         local shockwave = {
+            ship = mine.ship,
             age = 0,
             collider = hc.circle(mine.x, mine.y, config.powerups.mineShockwaveRadius * i)
         }

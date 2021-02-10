@@ -5,8 +5,9 @@ bullets = {
 bullets.list = {}
 bullets.toRemove = {}
 
-function bullets.new(xPos, yPos, xVel, yVel, maxAge)
+function bullets.new(parent, xPos, yPos, xVel, yVel, maxAge)
     local bullet = {
+        ship = parent,
         x = xPos,
         y = yPos,
         s = 1,

@@ -204,7 +204,7 @@ function ships.humanShoot(ship, controller)
                 local posY = math.sin(angle) * pos.d + ship.y
                 local velX = math.cos(ship.r + math.pi2 * dir + spread) * (config.bullets.speed * powerFactor)
                 local velY = math.sin(ship.r + math.pi2 * dir + spread) * (config.bullets.speed * powerFactor)
-                bullets.new(posX, posY, velX + ship.vx, velY + ship.vy, config.bullets.maxAge * powerFactor)
+                bullets.new(ship, posX, posY, velX + ship.vx, velY + ship.vy, config.bullets.maxAge * powerFactor)
                 ship.vx = ship.vx - velX * 0.1
                 ship.vy = ship.vy - velY * 0.1
             end
@@ -266,6 +266,14 @@ end
 
 function ships.setUIScore(ship)
     ship.canvas.ui.scoreValue = ship.score
+end
+
+function ships.damageByAndScore(damageShip, damagingShip, damage)
+    if damageShip.health < 1 then return end
+    ships.damage(damageShip, damage)
+    if damageShip.health < 1 and game.scoringMode == 'points' and damageShip ~= damagingShip then
+        damagingShip.score = damagingShip.score + 1
+    end
 end
 
 function ships.setSpawn(ship, x, y, r)

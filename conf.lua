@@ -8,7 +8,7 @@ config = {
     showFPS = false,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = true,
+    useTransitions = false,
 
     ships = {
         accForce = 0.3,
