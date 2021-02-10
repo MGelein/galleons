@@ -6,9 +6,11 @@ powerups.list = {}
 powerups.toRemove = {}
 powerups.definitions = {
     turbo = {sprite = sprites.pu_turbo, chance = 1},
-    mine = {sprite = sprites.pu_mine, chance = 100},
+    mine = {sprite = sprites.pu_mine, chance = 1},
     health = {sprite = sprites.pu_health, chance = 1},
     machinegun = {sprite = sprites.pu_machinegun, chance = 1},
+    tornado = {sprite = sprites.pu_tornado, chance = 100}
+    -- use flags as a powerup
 }
 powerups.rollTable = {}
 

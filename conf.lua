@@ -23,7 +23,7 @@ config = {
 
     powerups = {
         amt = 20,
-        maxAge = 600, -- about 10 seconds at 60 fps
+        maxAge = 1200, -- about 20 seconds at 60 fps
         
         healthIncrease = 4,
         machinegunTime = 300,
