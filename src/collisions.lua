@@ -45,7 +45,7 @@ function collisions.handleBullet(bullet)
             end
 
             if shape.class == 'ship' then
-                ships.damageByAndScore(shape.class, bullet.ship, 1)
+                ships.damageByAndScore(shape.parent, bullet.ship, 1)
             elseif shape.class == 'powerup' then
                 powerups.remove(shape.parent)
             end

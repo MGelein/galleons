@@ -105,9 +105,11 @@ function ships.ram(ship1, ship2, delta)
     local totalSpeed = ship1.speed + ship2.speed
     
     if totalSpeed > 5 then
-        local chosenShip = ship1
-        if math.abs(ship2Align) < math.abs(ship1Align) then chosenShip = ship2 end
-        ships.damage(chosenShip, 2)
+        if math.abs(ship2Align) > math.abs(ship1Align) then 
+            ships.damageByAndScore(ship1, ship2, 2)
+        else
+            ships.damageByAndScore(ship2, ship1, 2)
+        end
     end
 
     local nvx = (ship1.vx + ship2.vx) / 2
@@ -245,6 +247,7 @@ function ships.new(player, colorName)
         machinegunFrames = 0,
 
         score = 0,
+        damageDealt = 0,
     }
     ship.oy = ship.sprite:getHeight() / 2
     ship.ox = ship.sprite:getWidth() / 2
@@ -271,6 +274,7 @@ end
 function ships.damageByAndScore(damageShip, damagingShip, damage)
     if damageShip.health < 1 then return end
     ships.damage(damageShip, damage)
+    damagingShip.damageDealth = damagingShip.damageDealt + damage
     if damageShip.health < 1 and game.scoringMode == 'points' and damageShip ~= damagingShip then
         damagingShip.score = damagingShip.score + 1
     end
