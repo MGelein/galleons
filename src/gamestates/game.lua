@@ -1,5 +1,12 @@
 game = {scoringMode = 'points'} -- scoringMode = points | places
 
+-- IDEAS FOR GAMEMODES
+-- Capture the flag
+-- King of the hill
+-- Deathmatch
+-- Treasure Hunt (robbing merchants and other players or finding coins?)
+-- Races?
+
 function game.load()
     level.create()
     ships.create({A = 'green', B = 'red'})
