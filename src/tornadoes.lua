@@ -46,10 +46,10 @@ function tornadoes.update()
 
         if tornado.age < 60 then
             tornado.scale = tornado.age / 60
-        elseif tornado.age > tornado.maxAge - 60 then
-            tornado.scale = 1.00001 - (tornado.age - (tornado.maxAge - 60)) / 60
         elseif tornado.age >= tornado.maxAge then
             tornadoes.remove(tornado)
+        elseif tornado.age > tornado.maxAge - 60 then
+            tornado.scale = 1.00001 - (tornado.age - (tornado.maxAge - 60)) / 60
         else
             tornado.scale = 1
         end
@@ -68,9 +68,10 @@ function tornadoes.update()
                 end
             end
         end
-        dx = closestShip.x + (closestShip.vx * 10) - tornado.x
-        dy = closestShip.y + (closestShip.vy * 10) - tornado.y
+        dx = closestShip.x + (closestShip.vx * 30) - tornado.x
+        dy = closestShip.y + (closestShip.vy * 30) - tornado.y
         dist = math.sqrt(distSq)
+        if dist < 1 then dist = 1 end
         tornado.ax = (dx / dist) * tornado.steeringForce
         tornado.ay = (dy / dist) * tornado.steeringForce
     end

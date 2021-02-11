@@ -6,7 +6,7 @@ config = {
         fullscreen = false,
     },
     showFPS = false,
-    showColliders = false,
+    showColliders = true,
     deadzone = 0.15, -- controller deadzone
     useTransitions = false,
 
@@ -37,7 +37,7 @@ config = {
         mineDamage = 8,
 
         tornadoAge = 600,
-        tornadoSteeringForce = 0.3
+        tornadoSteeringForce = 0.5
     },
 
     bounds = {
