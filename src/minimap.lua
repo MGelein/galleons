@@ -18,6 +18,12 @@ function minimap.draw(w, h)
         love.graphics.setColor(ship.color.r, ship.color.g, ship.color.b)
         love.graphics.circle("fill", coord.x, coord.y, 5)
     end
+
+    for i, powerup in ipairs(powerups.list) do
+        local coord = minimap.coordToMap(powerup.x, powerup.y)
+        love.graphics.setColor(0.2, 0.2, 0.2, 1)
+        love.graphics.circle("fill", coord.x, coord.y, 1)
+    end
     
     love.graphics.pop()
     love.graphics.setColor(1, 1, 1, 1)

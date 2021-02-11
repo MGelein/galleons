@@ -58,7 +58,7 @@ function powerups.update()
         powerup.scaleAngle = powerup.scaleAngle + 0.05
         powerup.s = math.sin(powerup.scaleAngle) * 0.07 + powerup.baseScale
 
-        powerup.age = powerup.age + 1
+        powerup.age = powerup.age + 1 + love.math.random() * 0.1
         local ageRatio = powerup.age / config.powerups.maxAge
         if ageRatio > 0.9 then
             powerup.baseScale = (1 - ageRatio) * 10

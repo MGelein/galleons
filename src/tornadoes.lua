@@ -15,7 +15,7 @@ function tornadoes.new(parent, newX, newY)
         vy = 0,
         ax = 0,
         ay = 0,
-        vr = 0.01,
+        vr = 0.03,
         scale = 1,
         alpha = 0,
         age = 0,
