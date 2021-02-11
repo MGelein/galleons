@@ -21,6 +21,7 @@ require 'src.splash'
 require 'src.explosions'
 require 'src.minimap'
 require 'src.mines'
+require 'src.tornadoes'
 require 'src.powerups'
 
 require 'src.gamestates.gamestates'

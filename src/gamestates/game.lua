@@ -23,6 +23,7 @@ function game.screenDraw(screen)
     ships.draw()
     bullets.draw()
     explosions.draw()
+    tornadoes.draw()
 end
 
 function game.update(dt)
@@ -33,6 +34,7 @@ function game.update(dt)
     explosions.update()
     powerups.update()
     mines.update()
+    tornadoes.update()
     
     if game.scoringMode == 'places' then
         game.calculatePlaceOrder()

@@ -115,5 +115,7 @@ function powerups.apply(ship)
         local posX = math.cos(ship.r + math.pi) * 65 + ship.x
         local posY = math.sin(ship.r + math.pi) * 65 + ship.y
         mines.new(ship, posX, posY)
+    elseif(ship.powerup == 'tornado') then
+        tornadoes.new(ship, ship.x, ship.y)
     end
 end

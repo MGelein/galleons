@@ -38,6 +38,7 @@ sprites = {
     looseCannon = png("cannon/cannon_unmounted"),
     cannonBall = png("cannon/ball"),
     cannonRow = png("cannon/row"),
+    tornado = png("cannon/tornado"),
     
     explosion1 = png("fx/explosion1"),
     explosion2 = png("fx/explosion2"),
