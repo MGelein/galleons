@@ -16,7 +16,7 @@ function tornadoes.new(parent, newX, newY)
         ax = 0,
         ay = 0,
         vr = 0.03,
-        scale = 1,
+        scale = 0,
         alpha = 0,
         age = 0,
         maxAge = config.powerups.tornadoAge,
@@ -31,6 +31,11 @@ end
 
 function tornadoes.update()
     for i, tornado in ipairs(tornadoes.list) do
+        if tornado.age % 10 == 0 then 
+            local splashScale = tornado.scale * 10 * (1 + love.math.random())
+            splash.newSilent(tornado.x, tornado.y, tornado.scale * 20 * love.math.random()) 
+        end
+
         tornado.x = tornado.x + tornado.vx
         tornado.y = tornado.y + tornado.vy
         tornado.r = tornado.r + tornado.vr
