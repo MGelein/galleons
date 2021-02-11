@@ -23,9 +23,11 @@ for name, definition in pairs(powerups.definitions) do
 end
 
 function powerups.new()
+    local dist = (0.2 + love.math.random()) * bounds.halfSize * 0.5
+    local rot = love.math.random() * math.pi * 2
     local powerup = {
-        x = (love.math.random() * 2 - 1) * bounds.halfSize * 0.7,
-        y = (love.math.random() * 2 - 1) * bounds.halfSize * 0.7,
+        x = math.cos(rot) * dist,
+        y = math.sin(rot) * dist,
         r = 0,
         vr = 0,
         ar = 0.001,
