@@ -6,7 +6,7 @@ config = {
         fullscreen = false,
     },
     showFPS = false,
-    showColliders = true,
+    showColliders = false,
     deadzone = 0.15, -- controller deadzone
     useTransitions = false,
 
