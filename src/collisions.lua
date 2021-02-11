@@ -30,7 +30,7 @@ end
 
 function collisions.handleBullet(bullet)
     for shape, delta in pairs(hc.collisions(bullet.collider)) do
-        if shape.class == 'bullet' or shape.class == 'border' or shape.class == 'shockwave' then
+        if shape.class == 'bullet' or shape.class == 'border' or shape.class == 'shockwave' or shape.class = 'tornado' then
             -- do nothing
         else
             bullets.remove(bullet)
