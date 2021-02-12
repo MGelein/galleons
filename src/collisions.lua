@@ -2,25 +2,29 @@ collisions = {}
 
 function collisions.handleShip(ship)
     for shape, delta in pairs(hc.collisions(ship.collider)) do
-        if shape.class == 'ship' then
-            ships.ram(ship, shape.parent, delta)
-        elseif shape.class == 'spawn' then
+        if shape.class == 'spawn' then
             collisions.resolve(ship, delta, 1, 0.2)
         elseif shape.class == 'border' then
             collisions.resolve(ship, delta, 0.03, 0.9)
-        elseif shape.class == 'powerup' then
-            powerups.remove(shape.parent)
-            sounds.woodBreak()
-            sounds.splash()
-            if ship.powerup == 'none' then ship.powerup = powerups.get(ship) end
-        elseif shape.class == 'mine' then
-            mines.detonate(shape.parent)
-            ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
-        elseif shape.class == 'shockwave' then
-            ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
-        elseif shape.class == 'tornado' then
-            local tornado = shape.parent
-            ships.damageByAndScore(ship, tornado.ship, tornado.dmg)
+        end
+        
+        if not ship.invulnerable then
+            if shape.class == 'ship' then
+                ships.ram(ship, shape.parent, delta)
+            elseif shape.class == 'powerup' then
+                powerups.remove(shape.parent)
+                sounds.woodBreak()
+                sounds.splash()
+                if ship.powerup == 'none' then ship.powerup = powerups.get(ship) end
+            elseif shape.class == 'mine' then
+                mines.detonate(shape.parent)
+                ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
+            elseif shape.class == 'shockwave' then
+                ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
+            elseif shape.class == 'tornado' then
+                local tornado = shape.parent
+                ships.damageByAndScore(ship, tornado.ship, tornado.dmg)
+            end
         end
     end
 end

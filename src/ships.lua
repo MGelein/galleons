@@ -11,13 +11,14 @@ math.twopi = math.pi * 2
 
 function ships.draw()
     for i, ship in ipairs(ships.list) do
-        love.graphics.setColor(1, 1, 1, ship.alpha)
-        love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r -ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
-        
-        if ship.machinegunFrames > 1 then
-            love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r +ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+        if not ship.invulnerable and ship.alpha > 0.95 then
+            love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r -ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+            if ship.machinegunFrames > 1 then
+                love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r +ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+            end
         end
-        
+
+        love.graphics.setColor(ship.red, 1, 1, ship.alpha)
         love.graphics.draw(ship.sprite, ship.x, ship.y, ship.r - math.pi2, ship.sx, ship.sy, ship.ox, ship.oy)
         if config.showColliders then ship.collider:draw("line") end
     end
@@ -45,8 +46,28 @@ function ships.update()
         ship.reload = decrease(ship.reload)
         ship.machinegunFrames = decrease(ship.machinegunFrames)
         ship.mineCooldown = decrease(ship.mineCooldown)
+        ship.invulnerableFrames = decrease(ship.invulnerableFrames)
 
         collisions.handleShip(ship)
+        
+        if ship.invulnerableFrames == 0 then 
+            ship.invulnerable = false
+        else
+            ship.invulnerable = true
+        end
+
+        if ship.invulnerable then
+            ship.alpha = (0.3 - ship.alpha) * 0.1 + ship.alpha
+            ship.red = (0.3 - ship.red) * 0.1 + ship.alpha
+        elseif ship.health > 0 then
+            ship.alpha = (1 - ship.alpha) * 0.1 + ship.alpha
+            ship.red = (1 - ship.red) * 0.1 + ship.red
+        elseif ship.health <= 0 then
+            ship.alpha = ship.alpha * 0.95
+            if ship.alpha < 0.1 then
+                ships.respawn(ship)
+            end
+        end
 
         ship.x = ship.x + ship.vx
         ship.y = ship.y + ship.vy
@@ -59,7 +80,7 @@ function ships.update()
         ship.cox = ship.ox - math.abs(ship.cannonPos) * 20
         ship.coy = ship.oy
         ship.cor = toDir(ship.cannonPos)
-        ship.cannonPos = ship.cannonPos + (ship.tCannonPos - ship.cannonPos) * .1
+        ship.cannonPos = (ship.cannonPos + (ship.tCannonPos - ship.cannonPos) * .1) * ship.alpha
 
         ship.ax = ship.ax * 0.5
         ship.sx = (1 - ship.sx) * 0.2 + ship.sx
@@ -82,11 +103,6 @@ function ships.update()
                 ships.humanPowerup(ship, controller[ship.letter])
             else
                 ships.aiControl(ship)
-            end
-        else
-            ship.alpha = ship.alpha * 0.95
-            if ship.alpha < 0.1 then
-                ships.respawn(ship)
             end
         end
         
@@ -239,6 +255,7 @@ function ships.new(player, colorName)
         animation = image,
         sprite = image.frames[1],
         alpha = 1,
+        red = 1,
         color = sprites.colorFromName[colorName],
         
         cox = 0,
@@ -248,6 +265,8 @@ function ships.new(player, colorName)
 
         score = 0,
         damageDealt = 0,
+        invulnerable = false,
+        invulnerableFrames = 0,
     }
     ship.oy = ship.sprite:getHeight() / 2
     ship.ox = ship.sprite:getWidth() / 2

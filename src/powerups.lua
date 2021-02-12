@@ -9,8 +9,8 @@ powerups.definitions = {
     mine = {sprite = sprites.pu_mine, chance = 1},
     health = {sprite = sprites.pu_health, chance = 1},
     machinegun = {sprite = sprites.pu_machinegun, chance = 1},
-    tornado = {sprite = sprites.pu_tornado, chance = 100},
-    -- aztecCoin = {sprite = sprites.pu_aztecCoin, chance = 100},
+    tornado = {sprite = sprites.pu_tornado, chance = 1},
+    aztecCoin = {sprite = sprites.pu_aztecCoin, chance = 1},
     -- use flags as a powerup, so you can pick up no others
     -- maybe kraken going for the leader
     -- grapeshot, sort of shotgun close range
@@ -125,5 +125,7 @@ function powerups.apply(ship)
         mines.new(ship, posX, posY)
     elseif(ship.powerup == 'tornado') then
         tornadoes.new(ship, ship.x, ship.y)
+    elseif(ship.powerup == 'aztecCoin') then
+        ship.invulnerableFrames = config.powerups.aztecCoinDuration
     end
 end

@@ -38,7 +38,9 @@ config = {
 
         tornadoAge = 600,
         tornadoSteeringForce = 0.5,
-        tornadoDamage = 0.015
+        tornadoDamage = 0.015,
+
+        aztecCoinDuration = 300,
     },
 
     bounds = {
