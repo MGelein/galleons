@@ -39,6 +39,7 @@ sounds = {
 
     gust = audioClip('gust'),
     repair = audioClip('repair'),
+    ghost = audioClip('ghost'),
     cannonsReady = audioClip('cannonsReady'),
     explosion = audioClip('explosion'),
     transition = audioClip('transitionwave'),
@@ -49,6 +50,7 @@ sounds = {
 
 local function stopAndPlay(source)
     source:stop()
+    source:setVolume(config.audio.fxVolume)
     source:play()
 end
 sounds.stopAndPlay = stopAndPlay
@@ -100,7 +102,7 @@ function sounds.woodBreak()
  end
 
 function sounds.playBGM()
-    sounds.bgm:setVolume(0.5)
+    sounds.bgm:setVolume(config.audio.musicVolume)
     sounds.bgm:play()
 end
 
@@ -109,7 +111,7 @@ function sounds.stopBGM()
 end
 
 function sounds.playAmbience()
-    sounds.sea:setVolume(0.1)
+    sounds.sea:setVolume(config.audio.ambienceVolume)
     sounds.sea:play()
 end
 
@@ -120,6 +122,6 @@ end
 
 function sounds.playTransition()
     sounds.transition:stop()
-    sounds.transition:setVolume(0.2)
+    sounds.transition:setVolume(config.audio.fxVolume)
     sounds.transition:play()
 end

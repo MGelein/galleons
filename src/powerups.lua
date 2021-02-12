@@ -15,7 +15,6 @@ powerups.definitions = {
     -- maybe kraken going for the leader
     -- grapeshot, sort of shotgun close range
     -- tidal wave, going forward from you
-    -- unholy artefact providing temporary invulnerability as ghostship (no powerups either, no collisions)
     -- gold pickups to increase speed, more booty! arrrrr!
 }
 powerups.rollTable = {}
@@ -126,6 +125,7 @@ function powerups.apply(ship)
     elseif(ship.powerup == 'tornado') then
         tornadoes.new(ship, ship.x, ship.y)
     elseif(ship.powerup == 'aztecCoin') then
+        sounds.stopAndPlay(sounds.ghost)
         ship.invulnerableFrames = config.powerups.aztecCoinDuration
     end
 end

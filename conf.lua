@@ -10,6 +10,12 @@ config = {
     deadzone = 0.15, -- controller deadzone
     useTransitions = false,
 
+    audio = {
+        fxVolume = 0.5,
+        musicVolume = 0.5,
+        ambienceVolume = 0.1
+    },
+
     ships = {
         accForce = 0.3,
     },
