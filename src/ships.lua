@@ -272,10 +272,10 @@ function ships.setUIScore(ship)
 end
 
 function ships.damageByAndScore(damageShip, damagingShip, damage)
-    if damageShip.health < 1 then return end
+    if damageShip.health <= 0 then return end
     ships.damage(damageShip, damage)
     damagingShip.damageDealth = damagingShip.damageDealt + damage
-    if damageShip.health < 1 and game.scoringMode == 'points' and damageShip ~= damagingShip then
+    if damageShip.health <= 0 and game.scoringMode == 'points' and damageShip ~= damagingShip then
         damagingShip.score = damagingShip.score + 1
     end
 end

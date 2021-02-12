@@ -37,7 +37,8 @@ config = {
         mineDamage = 8,
 
         tornadoAge = 600,
-        tornadoSteeringForce = 0.5
+        tornadoSteeringForce = 0.5,
+        tornadoDamage = 0.015
     },
 
     bounds = {

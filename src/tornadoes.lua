@@ -15,6 +15,7 @@ function tornadoes.new(parent, newX, newY)
         vy = 0,
         ax = 0,
         ay = 0,
+        dmg = 0,
         vr = 0.03,
         scale = 0,
         alpha = 0,
@@ -46,9 +47,11 @@ function tornadoes.update()
 
         if tornado.age < 60 then
             tornado.scale = tornado.age / 60
+            if tornado.age == 59 then tornado.dmg = config.powerups.tornadoDamage end
         elseif tornado.age >= tornado.maxAge then
             tornadoes.remove(tornado)
         elseif tornado.age > tornado.maxAge - 60 then
+            if tornado.age == tornado.maxAge - 59 then tornado.dmg = 0 end
             tornado.scale = 1.00001 - (tornado.age - (tornado.maxAge - 60)) / 60
         else
             tornado.scale = 1

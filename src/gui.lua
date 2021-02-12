@@ -80,6 +80,7 @@ function gui.getPlaceName(place)
 end
 
 function gui.getHeartSprite(numHeart, healthLevel)
+    healthLevel = math.floor(healthLevel + 0.5)
     if healthLevel < (numHeart - 1) * 4 then 
         return sprites.heart_empty 
     elseif healthLevel >= numHeart * 4 then

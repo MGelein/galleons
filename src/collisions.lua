@@ -18,6 +18,9 @@ function collisions.handleShip(ship)
             ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
         elseif shape.class == 'shockwave' then
             ships.damageByAndScore(ship, shape.parent.ship, config.powerups.mineDamage / 4)
+        elseif shape.class == 'tornado' then
+            local tornado = shape.parent
+            ships.damageByAndScore(ship, tornado.ship, tornado.dmg)
         end
     end
 end
