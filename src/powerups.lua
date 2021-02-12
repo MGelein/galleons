@@ -123,6 +123,7 @@ function powerups.apply(ship)
         local posY = math.sin(ship.r + math.pi) * 65 + ship.y
         mines.new(ship, posX, posY)
     elseif(ship.powerup == 'tornado') then
+        sounds.stopAndPlay(sounds.tornado)
         tornadoes.new(ship, ship.x, ship.y)
     elseif(ship.powerup == 'aztecCoin') then
         sounds.stopAndPlay(sounds.ghost)

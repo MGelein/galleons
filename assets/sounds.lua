@@ -43,6 +43,7 @@ sounds = {
     cannonsReady = audioClip('cannonsReady'),
     explosion = audioClip('explosion'),
     transition = audioClip('transitionwave'),
+    tornado = audioClip('tornado'),
 
     bgm = audioStream('music'),
     sea = audioStream('waves'),
