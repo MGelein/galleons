@@ -109,3 +109,13 @@ function screens.get(letter)
         if screen.letter == letter then return screen end
     end
 end
+
+function screens.getResolutions()
+    local modes = love.window.getFullscreenModes()
+    table.sort(modes, function(a, b) return a.width*a.height > b.width*b.height end)
+    return modes
+end
+
+function screens.getHighestResolution()
+    return screens.getResolutions()[1]
+end
