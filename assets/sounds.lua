@@ -7,10 +7,10 @@ local function audioStream(url)
 end
 
 sounds = {
-    shoot1 = audioClip('shot_1'),
-    shoot2 = audioClip('shot_2'),
-    shoot3 = audioClip('shot_3'),
-    shoot4 = audioClip('shot_4'),
+    shoot1 = audioClip('shot1'),
+    shoot2 = audioClip('shot2'),
+    shoot3 = audioClip('shot3'),
+    shoot4 = audioClip('shot4'),
 
     splash1 = audioClip("splash1"),
     splash2 = audioClip("splash2"),
