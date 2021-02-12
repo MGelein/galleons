@@ -16,6 +16,7 @@ sprites = {
     pu_machinegun = png("ui/pu_machinegun"),
     pu_turbo = png("ui/pu_turbo"),
     pu_tornado = png("ui/pu_tornado"),
+    pu_aztecCoin = png("ui/pu_aztec_coin"),
     ui_A = png("ui/buttonA"),
     ui_B = png("ui/buttonB"),
     ui_X = png("ui/buttonX"),

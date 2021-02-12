@@ -9,7 +9,8 @@ powerups.definitions = {
     mine = {sprite = sprites.pu_mine, chance = 1},
     health = {sprite = sprites.pu_health, chance = 1},
     machinegun = {sprite = sprites.pu_machinegun, chance = 1},
-    tornado = {sprite = sprites.pu_tornado, chance = 100}
+    tornado = {sprite = sprites.pu_tornado, chance = 1},
+    aztecCoin = {sprite = sprites.pu_aztecCoin, chance = 100},
     -- use flags as a powerup, so you can pick up no others
     -- maybe kraken going for the leader
     -- grapeshot, sort of shotgun close range
