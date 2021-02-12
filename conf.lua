@@ -5,7 +5,7 @@ config = {
         title = 'Galleons',
         fullscreen = false,
     },
-    showFPS = false,
+    showFPS = true,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
     useTransitions = false,
