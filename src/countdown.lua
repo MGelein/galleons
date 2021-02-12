@@ -35,6 +35,7 @@ function countdown.update()
     if countdown.s < 1.01 then countdown.s = 1 end
     
     countdown.timeLeft = countdown.timeLeft - love.timer.getDelta()
+    if countdown.timeLeft < 0 then game.stop() end
     local prevMinutes = countdown.minutes
     countdown.minutes = math.floor(countdown.timeLeft / 60)
     if countdown.minutes < 0 then return end

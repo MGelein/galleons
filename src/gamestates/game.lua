@@ -1,4 +1,4 @@
-game = {scoringMode = 'points'} -- scoringMode = points | places
+game = {scoringMode = 'points', running = false} -- scoringMode = points | places
 
 -- IDEAS FOR GAMEMODES
 -- Capture the flag
@@ -14,8 +14,13 @@ function game.load()
 end
 
 function game.start()
+    game.running = true
     countdown.start(config.game.roundTime)
     sounds.playBGM()
+end
+
+function game.stop()
+    game.running = false
 end
 
 function game.draw()

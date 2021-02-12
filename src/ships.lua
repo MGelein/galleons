@@ -26,6 +26,7 @@ function ships.draw()
 end
 
 function ships.damage(ship, damage)
+    if not game.running then return end
     if damage > 0 then 
         screens.shake(ship.canvas, 30)
         sounds.woodBreak()
@@ -96,7 +97,7 @@ function ships.update()
         ship.sy = 1 + (ship.turboForce / 3)
 
         if ship.health > 0 then
-            if controller.exists(ship.letter) then
+            if controller.exists(ship.letter) and game.running then
                 ships.humanControl(ship, controller[ship.letter])
                 ships.humanAim(ship, controller[ship.letter])
                 ships.humanShoot(ship, controller[ship.letter])
