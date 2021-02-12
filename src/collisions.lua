@@ -66,7 +66,7 @@ function collisions.handlePowerup(powerup)
     for shape, delta in pairs(hc.collisions(powerup.collider)) do
         if shape.class == 'spawn' then
             powerups.remove(powerup)
-        else if shape.class == 'tornado' or shape.class == 'shockwave' then
+        elseif shape.class == 'tornado' or shape.class == 'shockwave' then
             sounds.woodBreak()
             powerups.remove(powerup)
         end
