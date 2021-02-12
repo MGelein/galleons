@@ -24,10 +24,12 @@ function screens.create()
 end
 
 function screens.setResolution(x, y)
+    x = x / config.window.dpiScale
+    y = y / config.window.dpiScale
     screens.mainScale.x = x / config.video.width
     screens.mainScale.y = y / config.video.height
     love.window.setMode(x, y)
-    love.window.setFullscreen(config.window.fullscreen, 'exclusive')
+    love.window.setFullscreen(config.window.fullscreen, 'desktop')
     config.window.width = love.graphics:getWidth()
     config.window.height = love.graphics:getHeight()
 end

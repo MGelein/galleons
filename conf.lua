@@ -4,6 +4,7 @@ config = {
         height = 768,
         title = 'Galleons',
         fullscreen = false,
+        dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
     },
     showFPS = true,
     showColliders = false,
