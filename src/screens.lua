@@ -1,15 +1,19 @@
 screens = {}
 screens.list = {}
+screens.main = love.graphics.newCanvas(config.video.width, config.video.height)
+screens.mainScale = {x = -1, y = -1}
 
 function screens.create()
     local amount = #ships.list
-    local w2 = config.window.width / 2
-    local h2 = config.window.height / 2
+    local w = config.video.width
+    local h = config.video.height
+    local w2 = w / 2
+    local h2 = h / 2
     if amount == 1 then 
-        screens.new(0, 0, config.window.width, config.window.height)
+        screens.new(0, 0, w, h)
     elseif amount == 2 then
-        screens.new(0, 0, w2, config.window.height)
-        screens.new(w2, 0, w2, config.window.height)
+        screens.new(0, 0, w2, h)
+        screens.new(w2, 0, w2, h)
     elseif amount > 2 then
         screens.new(0, 0, w2, h2)
         screens.new(w2, 0, w2, h2)
@@ -17,6 +21,15 @@ function screens.create()
         screens.new(w2, h2, w2, h2)
     end
     countdown.calculatePosition()
+end
+
+function screens.setResolution(x, y)
+    screens.mainScale.x = x / config.video.width
+    screens.mainScale.y = y / config.video.height
+    love.window.setMode(x, y)
+    love.window.setFullscreen(config.window.fullscreen, 'exclusive')
+    config.window.width = love.graphics:getWidth()
+    config.window.height = love.graphics:getHeight()
 end
 
 function screens.new(xPos, yPos, width, height)
@@ -85,7 +98,7 @@ function screens.draw(drawFn)
         drawFunction(screen)
         love.graphics.pop()
         gui.draw(screen.ui, screen.w, screen.h)
-        love.graphics.setCanvas()
+        love.graphics.setCanvas(screens.main)
         love.graphics.draw(screen.canvas, screen.x, screen.y)
     end
     countdown.draw()

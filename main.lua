@@ -6,8 +6,12 @@ function love.load()
 end
  
 function love.draw()
+    love.graphics.setCanvas(screens.main)
     gamestates.draw()
     fps.draw()
+    love.graphics.setCanvas()
+    love.graphics.scale(screens.mainScale.x, screens.mainScale.y)
+    love.graphics.draw(screens.main)
 end
     
 function love.update(dt)

@@ -2,10 +2,10 @@ gamestates = {
     transing = false,
     transState = 0,
     transVel = 0,
-    transTargetY = config.window.height * 1.5,
-    transTargetHalfway = config.window.height - sprites.transition:getHeight() * 0.75,
+    transTargetY = config.video.height * 1.5,
+    transTargetHalfway = config.video.height - sprites.transition:getHeight() * 0.75,
 }
-gamestates.transScale = config.window.height / sprites.transition:getHeight()
+gamestates.transScale = config.video.height / sprites.transition:getHeight()
 if gamestates.transScale < 1 then gamestates.transScale = 1 end
 gamestates.transTargetEnd = -sprites.transition:getHeight() * gamestates.transScale
 gamestates.transTargetY = gamestates.transTargetHalfway

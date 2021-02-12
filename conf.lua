@@ -16,6 +16,11 @@ config = {
         ambienceVolume = 0.1
     },
 
+    video = {
+        width = 1600,
+        height = 900,
+    },
+
     ships = {
         accForce = 0.3,
     },
@@ -59,9 +64,6 @@ config = {
 }
 
 function config.createWindow()
-    love.window.setMode(config.window.width, config.window.height)
-    love.window.setFullscreen(config.window.fullscreen, 'exclusive')
     love.window.setTitle(config.window.title)
-    config.window.width = love.graphics:getWidth()
-    config.window.height = love.graphics:getHeight()
+    screens.setResolution(config.window.width, config.window.height)
 end
