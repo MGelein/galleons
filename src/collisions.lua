@@ -10,7 +10,9 @@ function collisions.handleShip(ship)
         
         if not ship.invulnerable then
             if shape.class == 'ship' then
-                ships.ram(ship, shape.parent, delta)
+                if not shape.parent.invulnerable then 
+                    ships.ram(ship, shape.parent, delta)
+                end
             elseif shape.class == 'powerup' then
                 powerups.remove(shape.parent)
                 sounds.woodBreak()
