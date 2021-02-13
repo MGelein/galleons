@@ -30,7 +30,7 @@ function minimap.draw(w, h)
 end
 
 function minimap.coordToMap(x, y)
-    local rx = x / bounds.size + 0.5
-    local ry = y / bounds.size + 0.5
+    local rx = (x / bounds.size) * 0.95 + 0.5
+    local ry = (y / bounds.size) * 0.95 + 0.5
     return {x = rx * minimap.size, y = ry * minimap.size}
 end

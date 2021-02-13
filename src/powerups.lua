@@ -5,12 +5,12 @@ powerups = {
 powerups.list = {}
 powerups.toRemove = {}
 powerups.definitions = {
-    turbo = {sprite = sprites.pu_turbo, chance = 1},
-    mine = {sprite = sprites.pu_mine, chance = 1},
-    health = {sprite = sprites.pu_health, chance = 1},
-    machinegun = {sprite = sprites.pu_machinegun, chance = 1},
-    tornado = {sprite = sprites.pu_tornado, chance = 1},
-    aztecCoin = {sprite = sprites.pu_aztecCoin, chance = 1},
+    turbo = {sprite = sprites.pu_turbo, chance = config.powerups.turboChance},
+    mine = {sprite = sprites.pu_mine, chance = config.powerups.mineChance},
+    health = {sprite = sprites.pu_health, chance = config.powerups.healthChance},
+    machinegun = {sprite = sprites.pu_machinegun, chance = config.powerups.machinegunChance},
+    aztecCoin = {sprite = sprites.pu_aztecCoin, chance = config.powerups.aztecCoinChance},
+    tornado = {sprite = sprites.pu_tornado, chance = config.powerups.tornadoChance},
     -- use flags as a powerup, so you can pick up no others
     -- maybe kraken going for the leader
     -- grapeshot, sort of shotgun close range

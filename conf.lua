@@ -35,11 +35,19 @@ config = {
         spreadPower = 0.1, 
         speed = 15,
         maxAge = 60,
+        damage = 1.5,
     },
 
     powerups = {
         amt = 20,
         maxAge = 1200, -- about 20 seconds at 60 fps
+
+        turboChance = 30,
+        mineChance = 25,
+        healthChance = 20,
+        machinegunChance = 10,
+        aztecCoinChance = 10,
+        tornadoChance = 5,
         
         healthIncrease = 4,
         machinegunTime = 300,

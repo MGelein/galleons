@@ -3,9 +3,10 @@ pregame = {
 }
 
 function pregame.load()
-    pregame.state = 0
+    pregame.state = 1
     background.create('pregame')
     playerselectors.create()
+    playerselectors.show()
 end
 
 function pregame.start()

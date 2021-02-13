@@ -54,7 +54,9 @@ function collisions.handleBullet(bullet)
             end
 
             if shape.class == 'ship' then
-                ships.damageByAndScore(shape.parent, bullet.ship, 1)
+                if not shape.parent.invulnerable then
+                    ships.damageByAndScore(shape.parent, bullet.ship, config.bullets.damage)
+                end
             elseif shape.class == 'powerup' then
                 powerups.remove(shape.parent)
             end

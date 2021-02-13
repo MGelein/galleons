@@ -1,25 +1,37 @@
 bounds = {}
 bounds.dim = config.bounds.externalDim
-bounds.width = 300
+bounds.width = 1000
 bounds.size = bounds.dim - 2 * bounds.width
 bounds.halfSize = bounds.size / 2
 
 function bounds.create()
+    bounds.list = {}
     local dim = bounds.dim
     local dim2 = dim / 2
-    local width = 300
-    local top = hc.rectangle(-dim2, -dim2, dim, width)
-    local left = hc.rectangle(-dim2, -dim2, width, dim)
-    local right = hc.rectangle(dim2 - width, -dim2, width, dim)
-    local bottom = hc.rectangle(-dim2, dim2 - width, dim, width)
-    bounds.list = {top, left, right, bottom}
-    for i, border in ipairs(bounds.list) do
-        border.class = 'border'
-    end
+    local width = bounds.width
+    bounds.new(-dim2 - width, -dim2, dim + 2 * width, width)
+    bounds.new(-dim2 - width, dim2 - width, dim + 2 * width, width)
+    bounds.new(-dim2, -dim2 + width, width, bounds.size)
+    bounds.new(dim2 - width, -dim2 + width, width, bounds.size)
+end
+
+function bounds.new(posX, posY, width, height)
+    local bound = {
+        x = posX,
+        y = posY,
+        w = width,
+        h = height,
+        collider = hc.rectangle(posX, posY, width, height)
+    }
+    bound.collider.class = 'border'
+    table.insert(bounds.list, bound)
 end
 
 function bounds.draw()
     for i, border in ipairs(bounds.list) do
-        if config.showColliders then border:draw('line') end
+        love.graphics.setColor(1, 1, 1, 0.4)
+        love.graphics.rectangle('fill', border.x, border.y, border.w, border.h)
+        love.graphics.setColor(1, 1, 1, 1)
+        if config.showColliders then border.collider:draw('line') end
     end
 end
