@@ -68,7 +68,7 @@ config = {
     },
 
     bounds = {
-        externalDim = 6000
+        internalDim = 4000
     },
 
     game = {

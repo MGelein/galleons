@@ -1,7 +1,7 @@
 bounds = {}
-bounds.dim = config.bounds.externalDim
+bounds.size = config.bounds.internalDim
 bounds.width = 1000
-bounds.size = bounds.dim - 2 * bounds.width
+bounds.dim = bounds.size + bounds.width * 2
 bounds.halfSize = bounds.size / 2
 
 function bounds.create()
