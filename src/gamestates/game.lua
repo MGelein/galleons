@@ -1,4 +1,8 @@
-game = {scoringMode = 'points', running = false} -- scoringMode = points | places
+game = {
+    scoringMode = 'points', -- scoringMode = points | places | coins
+    running = false,
+    players = {A = 'green', B = 'red'}
+} 
 
 -- IDEAS FOR GAMEMODES
 -- Capture the flag
@@ -9,7 +13,7 @@ game = {scoringMode = 'points', running = false} -- scoringMode = points | place
 
 function game.load()
     level.create()
-    ships.create({A = 'green', B = 'red'})
+    ships.create(game.players)
     screens.create()
 end
 
