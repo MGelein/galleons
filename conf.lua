@@ -9,7 +9,7 @@ config = {
     showFPS = true,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = true,
+    useTransitions = false,
 
     ui = {
         moveTimeout = 10,
@@ -36,6 +36,7 @@ config = {
         speed = 15,
         maxAge = 60,
         damage = 1.5,
+        fireFrames = 20,
     },
 
     powerups = {

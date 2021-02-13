@@ -21,8 +21,18 @@ function ships.draw()
     for i, ship in ipairs(ships.list) do
         if not ship.invulnerable and ship.alpha > 0.95 then
             love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r -ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+            if ship.fireFrames > 0 then
+                love.graphics.setColor(1, 1, 1, ship.fireFrames / config.bullets.fireFrames)
+                love.graphics.draw(sprites.cannonFire, ship.x, ship.y, ship.r -ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+                love.graphics.setColor(1, 1, 1, 1)
+            end
             if ship.machinegunFrames > 1 then
                 love.graphics.draw(sprites.cannonRow, ship.x, ship.y, ship.r +ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+                if ship.fireFrames > 0 then
+                    love.graphics.setColor(1, 1, 1, ship.fireFrames / config.bullets.fireFrames)
+                    love.graphics.draw(sprites.cannonFire, ship.x, ship.y, ship.r +ship.cor, ship.sx, ship.sy, ship.cox, ship.coy)
+                    love.graphics.setColor(1, 1, 1, 1)
+                end
             end
         end
 
@@ -56,6 +66,7 @@ function ships.update()
         ship.machinegunFrames = decrease(ship.machinegunFrames)
         ship.mineCooldown = decrease(ship.mineCooldown)
         ship.invulnerableFrames = decrease(ship.invulnerableFrames)
+        ship.fireFrames = decrease(ship.fireFrames)
 
         collisions.handleShip(ship)
         
@@ -220,6 +231,7 @@ function ships.humanShoot(ship, controller)
         ship.reload = 60
         if ship.machinegunFrames > 1 then ship.reload = config.powerups.machinegunReload end
         sounds.shoot()
+        ship.fireFrames = config.bullets.fireFrames
         
         for name, pos in pairs(ships.cannonPositions) do
             local spread = (math.random() * 2 - 1) * config.bullets.spreadAngle
@@ -247,6 +259,7 @@ function ships.new(player, colorName)
         reload = 0,
         cannonPos = 0,
         tCannonPos = 0,
+        fireFrames = 0,
         spawn = {},
         powerup = 'none',
         vx = 0,
