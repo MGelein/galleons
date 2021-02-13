@@ -1,6 +1,9 @@
-pregame = {}
+pregame = {
+    state = 0,
+}
 
 function pregame.load()
+    pregame.state = 0
     background.create('pregame')
     playerselectors.create()
 end
@@ -16,7 +19,7 @@ end
 
 function pregame.update(dt)
     background.update()
-    playerselectors.update()
+    playerselectors.update(pregame.state)
 
     if playerselectors.isEveryoneReady() then
         game.players = playerselectors.getPlayers()

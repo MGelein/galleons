@@ -23,11 +23,19 @@ function playerselectors.create()
     playerselectors.new('D', xbuffer + 3 * selWidth, 0)
 end
 
+function playerselectors.show()
+    for i, selector in ipairs(playerselectors.list) do
+        selector.ty = 100
+    end
+end
+
 function playerselectors.new(character, posX, posY)
     local selector = {
         letter = character,
         x = posX,
-        y = posY + 100,
+        y = 5000 + posX * 10,
+        tx = posX,
+        ty = 5000 + posX * 10,
         waiting = true,
         color = {},
         colorName = '',
@@ -39,40 +47,43 @@ function playerselectors.new(character, posX, posY)
     table.insert(playerselectors.list, selector)
 end
 
-function playerselectors.update()
+function playerselectors.update(pregameState)
     for i, selector in ipairs(playerselectors.list) do
-        if controller[selector.letter] then
-            if selector.waiting then
-                selector.colorIndex = playerselectors.nextAvailableColorIndex(1, playerselectors.forward)
-                selector.waiting = false
-            end
-            selector.colorName = playerselectors.indexToColor[selector.colorIndex]
-            selector.color = sprites.colorFromName[selector.colorName]
-            selector.sprite = animations.shipFromColor[selector.colorName].frames[1]
-            selector.moveTimeout = decrease(selector.moveTimeout)
-            selector.timeout = decrease(selector.timeout)
-            
-            local controller = controller[selector.letter]
-            if selector.moveTimeout <= 0 and not selector.ready then
-                local value = controller.getLeftX()
-                local move = 0
-                if value > 0.5 then
-                    move = playerselectors.forward
-                elseif value < -0.5 then
-                    move = playerselectors.backward
+        selector.y = (selector.ty - selector.y) * 0.1 + selector.y
+        if pregameState > 0 then
+            if controller[selector.letter] then
+                if selector.waiting then
+                    selector.colorIndex = playerselectors.nextAvailableColorIndex(1, playerselectors.forward)
+                    selector.waiting = false
                 end
-                if move ~= 0 then
-                    selector.colorIndex = playerselectors.nextAvailableColorIndex(selector.colorIndex, move)
-                    selector.moveTimeout = config.ui.moveTimeout
+                selector.colorName = playerselectors.indexToColor[selector.colorIndex]
+                selector.color = sprites.colorFromName[selector.colorName]
+                selector.sprite = animations.shipFromColor[selector.colorName].frames[1]
+                selector.moveTimeout = decrease(selector.moveTimeout)
+                selector.timeout = decrease(selector.timeout)
+                
+                local controller = controller[selector.letter]
+                if selector.moveTimeout <= 0 and not selector.ready then
+                    local value = controller.getLeftX()
+                    local move = 0
+                    if value > 0.5 then
+                        move = playerselectors.forward
+                    elseif value < -0.5 then
+                        move = playerselectors.backward
+                    end
+                    if move ~= 0 then
+                        selector.colorIndex = playerselectors.nextAvailableColorIndex(selector.colorIndex, move)
+                        selector.moveTimeout = config.ui.moveTimeout
+                    end
                 end
+    
+                if not selector.ready and controller.isADown() and selector.timeout <= 0 then selector.ready = true
+                elseif selector.ready and controller.isBDown() and selector.timeout <= 0 then selector.ready = false
+                end
+                
+            else
+                selector.waiting = true
             end
-
-            if not selector.ready and controller.isADown() and selector.timeout <= 0 then selector.ready = true
-            elseif selector.ready and controller.isBDown() and selector.timeout <= 0 then selector.ready = false
-            end
-            
-        else
-            selector.waiting = true
         end
     end
 end
