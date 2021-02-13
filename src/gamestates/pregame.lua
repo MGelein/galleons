@@ -2,6 +2,7 @@ pregame = {}
 
 function pregame.load()
     background.create('pregame')
+    playerselectors.create()
 end
 
 function pregame.start()
@@ -10,14 +11,10 @@ end
 
 function pregame.draw()
     background.draw()
+    playerselectors.draw()
 end
 
 function pregame.update(dt)
     background.update()
-
-    if controller.A ~= nil then
-        if controller.A.isXDown() then
-            gamestates.setActive(game)
-        end
-    end
+    playerselectors.update()
 end

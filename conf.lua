@@ -9,7 +9,7 @@ config = {
     showFPS = true,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = true,
+    useTransitions = false,
 
     audio = {
         fxVolume = 0.5,

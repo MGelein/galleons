@@ -22,6 +22,7 @@ function gamestates.setActive(newState)
         sounds.playTransition()
     else
         gamestates.active = newState
+        newState.load()
         newState.start()
     end
 end

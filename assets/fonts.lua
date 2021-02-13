@@ -4,8 +4,10 @@ end
 
 fonts = {
     title = otf('chomsky', 32),
-    main = otf('some_time_later', 16),
+    normal = otf('chomsky', 32),
     place = otf('chomsky', 40),
     default = love.graphics.newFont(12),
 }
 fonts.countdown = fonts.place
+
+fonts.black = sprites.colorFromName.black

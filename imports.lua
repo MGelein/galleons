@@ -24,6 +24,7 @@ require 'src.mines'
 require 'src.tornadoes'
 require 'src.powerups'
 require 'src.background'
+require 'src.playerselectors'
 
 require 'src.gamestates.gamestates'
 require 'src.gamestates.game'
