@@ -71,8 +71,8 @@ function tornadoes.update()
                 end
             end
         end
-        dx = closestShip.x + (closestShip.vx * 30) - tornado.x
-        dy = closestShip.y + (closestShip.vy * 30) - tornado.y
+        dx = closestShip.x - tornado.x
+        dy = closestShip.y - tornado.y
         dist = math.sqrt(distSq)
         if dist < 1 then dist = 1 end
         tornado.ax = (dx / dist) * tornado.steeringForce
