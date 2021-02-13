@@ -6,6 +6,14 @@ ships.cannonPositions = {
     third = {r = 1.8, d = 42},
     fourth = {r = 2.2, d = 47},
 }
+ships.colorFromName = {
+    red = "Crimson Wave",
+    green = "Lucky Clover",
+    blue = "Stormhunter",
+    yellow = "Golden Dubloon",
+    white = "White Whale",
+    black = "Night's Edge"
+}
 math.pi2 = math.pi / 2
 math.twopi = math.pi * 2
 
