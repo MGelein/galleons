@@ -42,6 +42,11 @@ animations = {
     uiHeart = {
         frames = {sprites.heart_empty, sprites.heart_quarter, sprites.heart_half, sprites.heart_three_quarters, sprites.heart_full},
         speed = 0,
+    },
+
+    clouds = {
+        frames = {sprites.cloud1, sprites.cloud2, sprites.cloud3},
+        speed = 0,
     }
 }
 

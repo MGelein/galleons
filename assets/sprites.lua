@@ -31,8 +31,14 @@ sprites = {
     heart_quarter = png("ui/quarter_heart"),
     heart_empty = png("ui/empty_heart"),
 
-    seabg= png("seabg"),
+    seabg = png("seabg"),
     transition = png("transition"),
+    sky = png("ui/sky"),
+    island = png("ui/island"),
+    sea = png("ui/sea"),
+    cloud1 = png("ui/cloud1"),
+    cloud2 = png("ui/cloud2"),
+    cloud3 = png("ui/cloud3"),
 
     cannon = png("cannon/cannon"),
     mountedCannon = png("cannon/cannon_mounted"),

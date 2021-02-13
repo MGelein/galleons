@@ -23,6 +23,8 @@ require 'src.minimap'
 require 'src.mines'
 require 'src.tornadoes'
 require 'src.powerups'
+require 'src.background'
 
 require 'src.gamestates.gamestates'
 require 'src.gamestates.game'
+require 'src.gamestates.pregame'
