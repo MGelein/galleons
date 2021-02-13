@@ -34,6 +34,7 @@ function playerselectors.new(character, posX, posY)
         colorIndex = 0,
         moveTimeout = 30,
         ready = false,
+        timeout = 60, -- used to prevent you from immediately clicking A as you use it to join
     }
     table.insert(playerselectors.list, selector)
 end
@@ -49,6 +50,7 @@ function playerselectors.update()
             selector.color = sprites.colorFromName[selector.colorName]
             selector.sprite = animations.shipFromColor[selector.colorName].frames[1]
             selector.moveTimeout = decrease(selector.moveTimeout)
+            selector.timeout = decrease(selector.timeout)
             
             local controller = controller[selector.letter]
             if selector.moveTimeout <= 0 and not selector.ready then
@@ -65,8 +67,8 @@ function playerselectors.update()
                 end
             end
 
-            if not selector.ready and controller.isADown() then selector.ready = true
-            elseif selector.ready and controller.isBDown() then selector.ready = false
+            if not selector.ready and controller.isADown() and selector.timeout <= 0 then selector.ready = true
+            elseif selector.ready and controller.isBDown() and selector.timeout <= 0 then selector.ready = false
             end
             
         else
@@ -133,10 +135,15 @@ function playerselectors.drawSingle(selector)
 end
 
 function playerselectors.isEveryoneReady()
+    local numReady = 0
     for i, selector in ipairs(playerselectors.list) do
         if not selector.waiting and not selector.ready then return false end
+        if selector.ready then
+            numReady = numReady + 1
+        end
     end
-    return true
+    if numReady > 0 then return true    
+    else return false end
 end
 
 function playerselectors.getPlayers()
