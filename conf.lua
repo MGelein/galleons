@@ -1,7 +1,7 @@
 config = {
     window = {
-        width = 1366,
-        height = 768,
+        width = 1600,
+        height = 900,
         title = 'Galleons',
         fullscreen = false,
         dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
