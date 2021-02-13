@@ -26,6 +26,7 @@ sprites = {
     ui_L1 = png("ui/buttonL1"),
     ui_R = png("ui/buttonR"),
     ui_R1 = png("ui/buttonR1"),
+    ui_arrow = png("ui/arrow"),
     heart_full = png("ui/full_heart"),
     heart_three_quarters = png("ui/threeq_heart"),
     heart_half = png("ui/half_heart"),

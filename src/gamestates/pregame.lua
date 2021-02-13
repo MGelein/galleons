@@ -17,4 +17,9 @@ end
 function pregame.update(dt)
     background.update()
     playerselectors.update()
+
+    if playerselectors.isEveryoneReady() then
+        game.players = playerselectors.getPlayers()
+        gamestates.setActive(game)
+    end
 end

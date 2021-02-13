@@ -1,5 +1,13 @@
 playerselectors = {
-    halfheight = sprites.ui_playerselector_bg:getHeight() / 2
+    halfheight = sprites.ui_playerselector_bg:getHeight() / 2,
+    spriteox = sprites.white_full:getWidth() / 2,
+    spriteoy = sprites.white_full:getHeight() / 2,
+    iconox = sprites.ui_A:getWidth() / 2,
+    iconoy = sprites.ui_A:getHeight() / 2,
+    arrowox = sprites.ui_arrow:getWidth() / 2,
+    arrowoy = sprites.ui_arrow:getHeight() / 2,
+    forward = 1,
+    backward = -1,
 }
 playerselectors.list = {}
 playerselectors.indexToColor = {'red', 'green', 'blue', 'yellow', 'white', 'black'}
@@ -24,6 +32,8 @@ function playerselectors.new(character, posX, posY)
         color = {},
         colorName = '',
         colorIndex = 0,
+        moveTimeout = 30,
+        ready = false,
     }
     table.insert(playerselectors.list, selector)
 end
@@ -32,14 +42,36 @@ function playerselectors.update()
     for i, selector in ipairs(playerselectors.list) do
         if controller[selector.letter] then
             if selector.waiting then
-                selector.colorIndex = playerselectors.nextAvailableColorIndex(1)
+                selector.colorIndex = playerselectors.nextAvailableColorIndex(1, playerselectors.forward)
+                selector.waiting = false
             end
-            selector.waiting = false
+            selector.colorName = playerselectors.indexToColor[selector.colorIndex]
+            selector.color = sprites.colorFromName[selector.colorName]
+            selector.sprite = animations.shipFromColor[selector.colorName].frames[1]
+            selector.moveTimeout = decrease(selector.moveTimeout)
+            
+            local controller = controller[selector.letter]
+            if selector.moveTimeout <= 0 and not selector.ready then
+                local value = controller.getLeftX()
+                local move = 0
+                if value > 0.5 then
+                    move = playerselectors.forward
+                elseif value < -0.5 then
+                    move = playerselectors.backward
+                end
+                if move ~= 0 then
+                    selector.colorIndex = playerselectors.nextAvailableColorIndex(selector.colorIndex, move)
+                    selector.moveTimeout = config.ui.moveTimeout
+                end
+            end
+
+            if not selector.ready and controller.isADown() then selector.ready = true
+            elseif selector.ready and controller.isBDown() then selector.ready = false
+            end
+            
         else
             selector.waiting = true
         end
-        selector.colorName = playerselectors.indexToColor[selector.colorIndex]
-        selector.color = sprites.colorFromName[selector.colorName]
     end
 end
 
@@ -64,15 +96,68 @@ function playerselectors.drawSingle(selector)
         love.graphics.draw(sprites.ui_playerselector_bg, 10, 0)
         love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
         love.graphics.printf('Player ' .. selector.letter, 10, 32, 280, 'center')
+        love.graphics.setColor(1, 1, 1, 1)
+
+        love.graphics.draw(selector.sprite, 155, 200, 0, 1, 1, playerselectors.spriteox, playerselectors.spriteoy)
+        love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
+        love.graphics.printf(ships.nameFromColor[selector.colorName], 10, 300, 280, 'center')
+        
+        love.graphics.printf('Press', 10, 400, 280, 'center')
+        local icon = sprites.ui_A
+        local msg = 'when ready'
+        local col = {r = 0.2, g = 0.8, b = 0.2, a = 1}
+        if selector.ready then
+            icon = sprites.ui_B
+            msg = 'to cancel'
+            col = {r = 0.8, g = 0.2, b = 0.2, a = 1} 
+        end
+        love.graphics.setColor(col.r, col.g, col.b, col.a)
+        love.graphics.draw(icon, 145, 480, 0, 1, 1, playerselectors.iconox, playerselectors.iconoy)
+        love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
+        love.graphics.printf(msg, 10, 500, 280, 'center')
+        
+        if not selector.ready then
+            love.graphics.setColor(selector.color.r, selector.color.g, selector.color.b, 1)
+            love.graphics.draw(sprites.ui_arrow, 250, 200, 0, 1, 1, playerselectors.arrowox, playerselectors.arrowoy)
+            love.graphics.draw(sprites.ui_arrow, 50, 200, math.pi, 1, 1, playerselectors.arrowox, playerselectors.arrowoy)
+        else
+            love.graphics.setColor(1, 1, 1, 1)
+            love.graphics.draw(sprites.ui_tile_wide, 70, -80)
+            love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
+            love.graphics.print('Ready!', 100, -65)
+        end
+        
+        love.graphics.setColor(1, 1, 1, 1)
     end
     love.graphics.setColor(1, 1, 1, 1)
 end
 
-function playerselectors.nextAvailableColorIndex(colorIndex)
+function playerselectors.isEveryoneReady()
+    for i, selector in ipairs(playerselectors.list) do
+        if not selector.waiting and not selector.ready then return false end
+    end
+    return true
+end
+
+function playerselectors.getPlayers()
+    local players = {}
+    for i, selector in ipairs(playerselectors.list) do
+        if selector.ready then
+            players[selector.letter] = selector.colorName
+        end
+    end
+    return players
+end
+
+function playerselectors.nextAvailableColorIndex(colorIndex, dir)
     local nextColorIndex = colorIndex
     while playerselectors.isColorIndexTaken(nextColorIndex) do
-        nextColorIndex = nextColorIndex + 1
-        if nextColorIndex > #playerselectors.indexToColor then nextColorIndex = 1 end
+        nextColorIndex = nextColorIndex + dir
+        if nextColorIndex > #playerselectors.indexToColor then 
+            nextColorIndex = 1
+        elseif nextColorIndex <= 1 then 
+            nextColorIndex = #playerselectors.indexToColor 
+        end
     end
     return nextColorIndex
 end

@@ -6,7 +6,7 @@ ships.cannonPositions = {
     third = {r = 1.8, d = 42},
     fourth = {r = 2.2, d = 47},
 }
-ships.colorFromName = {
+ships.nameFromColor = {
     red = "Crimson Wave",
     green = "Lucky Clover",
     blue = "Stormhunter",
