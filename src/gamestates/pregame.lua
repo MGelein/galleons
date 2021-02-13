@@ -14,4 +14,10 @@ end
 
 function pregame.update(dt)
     background.update()
+
+    if controller.A ~= nil then
+        if controller.A.isXDown() then
+            gamestates.setActive(game)
+        end
+    end
 end
