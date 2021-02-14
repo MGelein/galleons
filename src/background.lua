@@ -17,23 +17,21 @@ end
 
 function background.create(name)
     background.elements = {}
-    if name == 'pregame' then
-        background.newElement(sprites.sky, 0, 0)
-        background.newElement(sprites.island, 0, config.video.height - sprites.island:getHeight())
-        local sea = background.newElement(sprites.sea, 0, config.video.height - sprites.sea:getHeight())
-        sea.vx = 8
-        local seaLeft = background.newElement(sprites.sea, -sprites.sea:getWidth(), config.video.height - sprites.sea:getHeight())
-        seaLeft.vx = 8
-        local seaRight = background.newElement(sprites.sea, sprites.sea:getWidth(), config.video.height - sprites.sea:getHeight())
-        seaRight.vx = 8
+    background.newElement(sprites.sky, 0, 0)
+    background.newElement(sprites.island, 0, config.video.height - sprites.island:getHeight())
+    local sea = background.newElement(sprites.sea, 0, config.video.height - sprites.sea:getHeight())
+    sea.vx = 8
+    local seaLeft = background.newElement(sprites.sea, -sprites.sea:getWidth(), config.video.height - sprites.sea:getHeight())
+    seaLeft.vx = 8
+    local seaRight = background.newElement(sprites.sea, sprites.sea:getWidth(), config.video.height - sprites.sea:getHeight())
+    seaRight.vx = 8
 
-        for i, sprite in ipairs(animations.clouds.frames) do
-            local cloud = background.newElement(sprite, love.math.random() * config.video.width, love.math.random() * config.video.height / 2)
-            cloud.vx = love.math.random() * 0.5 + 0.1
-            local cloud2 = background.newElement(sprite, love.math.random() * config.video.width, love.math.random() * config.video.height / 2)
-            cloud2.vx = love.math.random() * 0.5 + 0.1
-            cloud2.r = math.pi
-        end
+    for i, sprite in ipairs(animations.clouds.frames) do
+        local cloud = background.newElement(sprite, love.math.random() * config.video.width, love.math.random() * config.video.height / 2)
+        cloud.vx = love.math.random() * 0.5 + 0.1
+        local cloud2 = background.newElement(sprite, love.math.random() * config.video.width, love.math.random() * config.video.height / 2)
+        cloud2.vx = love.math.random() * 0.5 + 0.1
+        cloud2.r = math.pi
     end
 end
 
