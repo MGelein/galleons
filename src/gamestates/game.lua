@@ -23,7 +23,6 @@ function game.load()
 end
 
 function game.start()
-    game.running = true
     countdown.start(config.game.roundTime)
     sounds.playBGM()
 end
@@ -61,7 +60,11 @@ function game.update(dt)
     if #game.alerts > 0 then
         game.alerts[1].time = game.alerts[1].time - dt
         if game.alerts[1].time <= 0 then 
-            table.remove(game.alerts, 1) 
+            table.remove(game.alerts, 1)
+
+            if #game.alerts == 0 and not game.running then
+                game.running = true
+            end
         end
     end
     
