@@ -105,7 +105,6 @@ function playerselectors.drawSingle(selector)
     love.graphics.draw(sprites.ui_playerselector_bg, 10, 0)
     if selector.waiting then
         fonts.outlineText("Press any button to join", 10, playerselectors.halfheight - 32, 280, 'center')
-        -- love.graphics.printf("Press any button to join", 10, playerselectors.halfheight - 32, 280, 'center')
     else
         fonts.outlineText('Player ' .. selector.letter, 10, 32, 280, 'center')
 

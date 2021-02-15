@@ -358,6 +358,7 @@ function ships.respawn(ship)
 end
 
 function ships.create(defs)
+    ships.list = {}
     for letter, color in pairs(defs) do
         ships.new(letter, color)
     end

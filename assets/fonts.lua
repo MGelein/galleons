@@ -7,6 +7,8 @@ fonts = {
     title = otf('chomsky', 32),
     normal = otf('chomsky', 32),
     place = otf('chomsky', 40),
+    result = otf('chomsky', 64),
+    score = otf('chomsky', 48),
     alert = otf('chomsky', 128),
     default = love.graphics.newFont(12),
 }
@@ -18,6 +20,16 @@ function fonts.outlineText(text, x, y, limit, align)
     local r, g, b, a = love.graphics.getColor()
     love.graphics.setColor(fonts.shadow.r, fonts.shadow.g, fonts.shadow.b, 1)
     love.graphics.printf(text, x + 1, y + 1, limit, align)
+    if config.fullFontOutlining then
+        love.graphics.printf(text, x + 1, y + 0, limit, align)
+        love.graphics.printf(text, x + 1, y - 1, limit, align)
+        love.graphics.printf(text, x + 0, y + 1, limit, align)
+        love.graphics.printf(text, x + 0, y + 0, limit, align)
+        love.graphics.printf(text, x + 0, y - 1, limit, align)
+        love.graphics.printf(text, x - 1, y + 1, limit, align)
+        love.graphics.printf(text, x - 1, y + 0, limit, align)
+        love.graphics.printf(text, x - 1, y - 1, limit, align)
+    end
     love.graphics.setColor(r, g, b, a)
     love.graphics.printf(text, x, y, limit, align)
 end

@@ -1,9 +1,9 @@
 screens = {}
-screens.list = {}
 screens.main = love.graphics.newCanvas(config.video.width, config.video.height)
 screens.mainScale = {x = -1, y = -1}
 
 function screens.create()
+    screens.list = {}
     local amount = #ships.list
     local w = config.video.width
     local h = config.video.height

@@ -29,6 +29,7 @@ end
 
 function game.stop()
     game.running = false
+    gamestates.setActive(postgame)
 end
 
 function game.draw()
