@@ -24,10 +24,7 @@ end
 function countdown.draw()
     love.graphics.draw(countdown.sprite, countdown.x, countdown.y, 0, countdown.s, countdown.s, countdown.ox, countdown.oy)
     love.graphics.setFont(fonts.countdown)
-    love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-    love.graphics.print(countdown.timeString, countdown.x - countdown.ox + 20, countdown.y - countdown.oy + 10)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print(countdown.timeString, countdown.x - countdown.ox + 19, countdown.y - countdown.oy + 9)
+    fonts.outlineText(countdown.timeString, 0, countdown.y - countdown.oy + 10, config.video.width, 'center')
 end
 
 function countdown.update()

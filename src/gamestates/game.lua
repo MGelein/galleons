@@ -1,7 +1,8 @@
 game = {
     scoringMode = 'points', -- scoringMode = points | places | coins
     running = false,
-    players = {A = 'green', B = 'red'}
+    players = {A = 'green', B = 'red'},
+    alerts = {}
 } 
 
 -- IDEAS FOR GAMEMODES
@@ -15,6 +16,10 @@ function game.load()
     level.create()
     ships.create(game.players)
     screens.create()
+    game.queueAlert('3', 1)
+    game.queueAlert('2', 1)
+    game.queueAlert('1', 1)
+    game.queueAlert('Fight', 1)
 end
 
 function game.start()
@@ -29,6 +34,7 @@ end
 
 function game.draw()
     screens.draw(game.screenDraw)
+    if #game.alerts > 0 then game.drawAlert(game.alerts[1]) end
 end
 
 function game.screenDraw(screen)
@@ -51,6 +57,13 @@ function game.update(dt)
     powerups.update()
     mines.update()
     tornadoes.update()
+
+    if #game.alerts > 0 then
+        game.alerts[1].time = game.alerts[1].time - dt
+        if game.alerts[1].time <= 0 then 
+            table.remove(game.alerts, 1) 
+        end
+    end
     
     if game.scoringMode == 'places' then
         game.calculatePlaceOrder()
@@ -83,4 +96,19 @@ function game.calculatePlaceOrder()
     for i=1, #inOrder do
         ships.setPlace(inOrder[i], i)
     end
+end
+
+function game.queueAlert(alert, seconds)
+    table.insert(game.alerts, {
+        text = alert, 
+        time = seconds, 
+        origTime = seconds, 
+        y = -2000
+    })
+end
+
+function game.drawAlert(alert)
+    alert.y = ((config.video.height / 2 - 100) - alert.y) * 0.2 + alert.y
+    love.graphics.setFont(fonts.alert)
+    fonts.outlineText(alert.text, 0, alert.y, config.video.width, 'center')
 end
