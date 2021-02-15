@@ -12,11 +12,12 @@ fonts = {
 }
 fonts.countdown = fonts.place
 
-fonts.black = sprites.colorFromName.black
+fonts.shadow = sprites.colorFromName.black
 
 function fonts.outlineText(text, x, y, limit, align)
-    love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
+    local r, g, b, a = love.graphics.getColor()
+    love.graphics.setColor(fonts.shadow.r, fonts.shadow.g, fonts.shadow.b, 1)
     love.graphics.printf(text, x + 1, y + 1, limit, align)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(r, g, b, a)
     love.graphics.printf(text, x, y, limit, align)
 end

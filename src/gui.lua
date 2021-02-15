@@ -70,10 +70,7 @@ function gui.drawOutlinedString(ui, x, y)
 
     local offset = minimap.size
     love.graphics.draw(sprites.ui_tile_wide, x - offset, y - offset / 2)
-    love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-    love.graphics.printf(string, x - offset, y + 10 - offset / 2, minimap.size, 'center')
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.printf(string, x - offset - 1, y + 9 - offset / 2, minimap.size, 'center')
+    fonts.outlineText(string, x - offset, y + 10 - offset / 2, minimap.size, 'center')
 end
 
 function gui.getPlaceName(place)

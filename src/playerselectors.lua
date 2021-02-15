@@ -104,18 +104,15 @@ function playerselectors.drawSingle(selector)
     love.graphics.setFont(fonts.normal)
     love.graphics.draw(sprites.ui_playerselector_bg, 10, 0)
     if selector.waiting then
-        love.graphics.printf("Press any button to join", 10, playerselectors.halfheight - 32, 280, 'center')
+        fonts.outlineText("Press any button to join", 10, playerselectors.halfheight - 32, 280, 'center')
+        -- love.graphics.printf("Press any button to join", 10, playerselectors.halfheight - 32, 280, 'center')
     else
-        love.graphics.draw(sprites.ui_playerselector_bg, 10, 0)
-        love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-        love.graphics.printf('Player ' .. selector.letter, 10, 32, 280, 'center')
-        love.graphics.setColor(1, 1, 1, 1)
+        fonts.outlineText('Player ' .. selector.letter, 10, 32, 280, 'center')
 
         love.graphics.draw(selector.sprite, 155, 200, 0, 1, 1, playerselectors.spriteox, playerselectors.spriteoy)
-        love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-        love.graphics.printf(ships.nameFromColor[selector.colorName], 10, 300, 280, 'center')
+        fonts.outlineText(ships.nameFromColor[selector.colorName], 10, 300, 280, 'center')
         
-        love.graphics.printf('Press', 10, 400, 280, 'center')
+        fonts.outlineText('Press', 10, 400, 280, 'center')
         local icon = sprites.ui_A
         local msg = 'when ready'
         local col = {r = 0.2, g = 0.8, b = 0.2, a = 1}
@@ -126,8 +123,8 @@ function playerselectors.drawSingle(selector)
         end
         love.graphics.setColor(col.r, col.g, col.b, col.a)
         love.graphics.draw(icon, 145, 480, 0, 1, 1, playerselectors.iconox, playerselectors.iconoy)
-        love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-        love.graphics.printf(msg, 10, 500, 280, 'center')
+        love.graphics.setColor(1, 1, 1, 1)
+        fonts.outlineText(msg, 10, 500, 280, 'center')
         
         if not selector.ready then
             love.graphics.setColor(selector.color.r, selector.color.g, selector.color.b, 1)
@@ -136,8 +133,7 @@ function playerselectors.drawSingle(selector)
         else
             love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(sprites.ui_tile_wide, 70, -80)
-            love.graphics.setColor(fonts.black.r, fonts.black.g, fonts.black.b, 1)
-            love.graphics.print('Ready!', 100, -65)
+            fonts.outlineText('Ready!', 10, -65, 280, 'center')
         end
         
         love.graphics.setColor(1, 1, 1, 1)
