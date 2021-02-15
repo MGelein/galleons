@@ -9,7 +9,7 @@ config = {
     showFPS = true,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = false,
+    useTransitions = true,
 
     ui = {
         moveTimeout = 10,
