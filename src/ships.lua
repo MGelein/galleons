@@ -320,6 +320,13 @@ function ships.setUIScore(ship)
     ship.canvas.ui.scoreValue = ship.score
 end
 
+function ships.setKing(ship)
+    for i, ship in ipairs(ships.list) do
+        ship.score = 0
+    end
+    if ship ~= nil then ship.score = 1 end
+end
+
 function ships.damageByAndScore(damageShip, damagingShip, damage)
     if damageShip.health <= 0 then return end
     ships.damage(damageShip, damage)

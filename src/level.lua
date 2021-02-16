@@ -22,12 +22,12 @@ level.lagoon = {
     sprite = sprites.lagoon,
     ox = sprites.lagoon:getWidth() / 2,
     oy = sprites.lagoon:getHeight() / 2,
-    colliders = {}
+    colliders = {},
 }
 
 function level.createLagoonColliders()
-    local centerZone = hc.circle(0, 0, 350)
-    level.addLagoonCollider(centerZone, 'center')
+    level.lagoon.centerZone = hc.circle(0, 0, 350)
+    level.addLagoonCollider(level.lagoon.centerZone, 'center')
 
     local topLeftIsland = hc.polygon( -410,-330,  -330,-410,  -170,-410,  -160,-310,  -310,-170,  -410,-170)
     level.addLagoonCollider(topLeftIsland, 'land')
@@ -70,6 +70,20 @@ function level.draw(screen)
     bounds.draw()
     islands.draw()
     level.drawLagoon()
+end
+
+function level.update()
+    if game.mode == game.kingOfTheHill then
+        local shipAmt = 0
+        for shape, delta in pairs(hc.collisions(level.lagoon.centerZone)) do
+            if shape.class == 'ship' then 
+                shipAmt = shipAmt + 1 
+                level.king = shape.parent
+            end
+        end
+        if shipAmt ~= 1 then level.king = nil end
+        ships.setKing(level.king)
+    end
 end
 
 function level.destroy()

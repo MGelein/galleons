@@ -34,7 +34,8 @@ function countdown.update()
     if countdown.s < 1.01 then countdown.s = 1 end
     
     if game.running then
-        countdown.timeLeft = countdown.timeLeft - love.timer.getDelta()
+        if game.mode == game.deathmatch then countdown.updateTimer()
+        elseif game.mode == game.kingOfTheHill and level.king ~= nil then countdown.updateTimer() end
     end
     
     if countdown.timeLeft < 0 then game.stop() end
@@ -50,6 +51,10 @@ function countdown.update()
     elseif countdown.minutes ~= prevMinutes then
         countdown.breathe()
     end
+end
+
+function countdown.updateTimer()
+    countdown.timeLeft = countdown.timeLeft - love.timer.getDelta()
 end
 
 function countdown.breathe()

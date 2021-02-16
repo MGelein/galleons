@@ -76,8 +76,9 @@ function gui.drawOutlinedString(ui, x, y)
 end
 
 function gui.getPlaceName(place)
-    if game.mode == game.kingOfTheHill and place > 1 then
-            return gui.places[2]
+    if game.mode == game.kingOfTheHill then
+        if place == 1 then return 'King'
+        else return 'Serf' end
     end
     return gui.places[place]
 end

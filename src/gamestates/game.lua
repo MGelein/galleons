@@ -6,7 +6,7 @@ game = {
     kingOfTheHill = 'kingofthehill',
     captureTheFlag = 'captureTheFlag'
 } 
-game.mode = game.deathmatch
+game.mode = game.kingOfTheHill
 
 -- IDEAS FOR GAMEMODES
 -- Capture the flag
@@ -72,6 +72,7 @@ function game.update(dt)
     powerups.update()
     mines.update()
     tornadoes.update()
+    level.update()
 
     if #game.alerts > 0 then
         game.alerts[1].time = game.alerts[1].time - dt
@@ -84,7 +85,7 @@ function game.update(dt)
         end
     end
     
-    if game.mode == game.deathmatch then
+    if game.mode == game.deathmatch or game.mode == game.kingOfTheHill then
         game.setUIScores()
     else
         game.calculatePlaceOrder()
