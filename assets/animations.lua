@@ -52,6 +52,11 @@ animations = {
     islands = {
         frames = {sprites.island2, sprites.island4, sprites.island5, sprites.island6},
         speed = 0,
+    },
+
+    smoke = {
+        frames = {sprites.smoke1, sprites.smoke2, sprites.smoke3, sprites.smoke4},
+        speed = 5
     }
 }
 

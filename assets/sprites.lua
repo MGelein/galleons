@@ -58,6 +58,11 @@ sprites = {
     fire1 = png("fx/fire1"),
     fire2 = png("fx/fire2"),
 
+    smoke1 = png("fx/smoke1"),
+    smoke2 = png("fx/smoke2"),
+    smoke3 = png("fx/smoke3"),
+    smoke4 = png("fx/smoke4"),
+
     baseA = png('structures/base1'),
     baseB = png('structures/base2'),
     baseC = png('structures/base3'),
