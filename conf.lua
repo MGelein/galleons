@@ -60,7 +60,7 @@ config = {
         mineAmt = 3,
         mineShockwaveRadius = 60,
         mineReload = 30,
-        mineFuse = 180,
+        mineFuse = 3600,
         mineDamage = 8,
 
         tornadoAge = 600,
