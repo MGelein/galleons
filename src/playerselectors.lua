@@ -66,9 +66,9 @@ function playerselectors.update(pregameState)
                 if selector.moveTimeout <= 0 and not selector.ready then
                     local value = controller.getLeftX()
                     local move = 0
-                    if value > 0.5 then
+                    if value > 0.5 or controller.isDPRight() then
                         move = playerselectors.forward
-                    elseif value < -0.5 then
+                    elseif value < -0.5 or controller.isDPLeft() then
                         move = playerselectors.backward
                     end
                     if move ~= 0 then
