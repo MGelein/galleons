@@ -55,8 +55,8 @@ animations = {
     },
 
     smoke = {
-        frames = {sprites.smoke1, sprites.smoke2, sprites.smoke3, sprites.smoke4},
-        speed = 5
+        frames = {sprites.smoke1, sprites.smoke2, sprites.smoke3, sprites.smoke4, sprites.smoke5, sprites.smoke6, sprites.smoke7, sprites.smoke8},
+        speed = 3
     }
 }
 

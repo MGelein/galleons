@@ -4,8 +4,8 @@ smoke.toRemove = {}
 
 function smoke.new(posX, posY)
     local newSmoke = {
-        x = xPos,
-        y = yPos,
+        x = posX,
+        y = posY,
         r = math.random() * math.twopi,
         s = math.random() * .5 + .5,
         frame = 1,

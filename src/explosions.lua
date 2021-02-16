@@ -43,6 +43,7 @@ function explosions.update()
             if explosion.frame < 1 then
                 explosion.playDir = 1
                 explosion.frame = explosion.frame + explosion.playDir * 2
+                smoke.new(explosion.x, explosion.y)
             end
         end
     end
