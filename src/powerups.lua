@@ -134,7 +134,25 @@ function powerups.apply(ship)
     elseif(ship.powerup == 'aztecCoin') then
         sounds.stopAndPlay(sounds.ghost)
         ship.invulnerableFrames = config.powerups.aztecCoinDuration
+    elseif(ship.powerup == 'redFlag') then 
+        powerups.dropFlag('red')
+    elseif(ship.powerup == 'greenFlag') then 
+        powerups.dropFlag('green')
+    elseif(ship.powerup == 'blueFlag') then 
+        powerups.dropFlag('blue')
+    elseif(ship.powerup == 'yellowFlag') then 
+        powerups.dropFlag('yellow')
+    elseif(ship.powerup == 'whiteFlag') then 
+        powerups.dropFlag('white')
+    elseif(ship.powerup == 'blackFlag') then 
+        powerups.dropFlag('black')
     end
+end
+
+function powerups.dropFlag(color, ship)
+    local posX = math.cos(ship.r + math.pi) * 65 + ship.x
+    local posY = math.sin(ship.r + math.pi) * 65 + ship.y
+    flags.new(posX, posY, color)
 end
 
 function powerups.removeAll()

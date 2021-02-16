@@ -50,7 +50,7 @@ end
 function collisions.handleBullet(bullet)
     for shape, delta in pairs(hc.collisions(bullet.collider)) do
         local class = shape.class
-        if class == 'bullet' or class == 'border' or class == 'shockwave' or class == 'tornado' or class == 'center' or class =='land' then
+        if collisions.isTransparentForBullets(class) then
             -- do nothing
         else
             bullets.remove(bullet)
@@ -91,4 +91,12 @@ function collisions.resolve(object, delta, hardness, restitution)
     object.y = object.y + delta.y * hardness
     object.vx = object.vx * restitution
     object.vy = object.vy * restitution
+end
+
+function collisions.isTransparentForBullets(class)
+    if class == 'bullet' or class == 'border' or class == 'shockwave' then return true
+    elseif class == 'tornado' or class == 'center' or class =='land' then return true
+    elseif class == 'flag' then return true
+    end
+    return false 
 end

@@ -47,6 +47,7 @@ function game.screenDraw(screen)
     splash.draw()
     powerups.draw()
     mines.draw()
+    flags.draw()
     ships.draw()
     bullets.draw()
     smoke.draw()
@@ -65,6 +66,7 @@ function game.update(dt)
     mines.update()
     tornadoes.update()
     level.update()
+    flags.update()
 
     if #game.alerts > 0 then
         game.alerts[1].time = game.alerts[1].time - dt
