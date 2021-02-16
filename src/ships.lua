@@ -375,6 +375,12 @@ function ships.respawn(ship)
     ships.damage(ship, -12)
 end
 
+function ships.setPowerup(ship, powerup)
+    ship.powerup = powerup
+    gui.setLeftIcon(ship.canvas.ui, powerups.definitions[powerup].sprite)
+    if powerup == 'mine' then ship.mines = config.powerups.mineAmt end
+end
+
 function ships.create(defs)
     ships.list = {}
     for letter, color in pairs(defs) do

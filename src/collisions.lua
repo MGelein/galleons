@@ -47,6 +47,18 @@ function collisions.isLand(xPos, yPos)
     return false
 end
 
+function collisions.handleFlag(flag)
+    for shape, delta in pairs(hc.collisions(flag.collider)) do
+        if shape.class == 'ship' then
+            local ship = shape.parent
+            if ship.powerup == 'none' then
+                flags.remove(flag)
+                ships.setPowerup(ship, flag.color .. 'Flag')
+            end
+        end
+    end
+end
+
 function collisions.handleBullet(bullet)
     for shape, delta in pairs(hc.collisions(bullet.collider)) do
         local class = shape.class

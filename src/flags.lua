@@ -52,6 +52,8 @@ function flags.update()
     for i, flag in ipairs(flags.list) do
         flag.sAngle = flag.sAngle + love.math.random() * 0.1
         flag.s = math.sin(flag.sAngle) * 0.05 + flags.targetScale
+
+        collisions.handleFlag(flag)
     end
 
     if #flags.toRemove > 0 then

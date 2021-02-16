@@ -106,8 +106,7 @@ end
 function powerups.get(ship)
     local index = math.ceil(love.math.random() * #powerups.rollTable)
     local powerup = powerups.rollTable[index]
-    gui.setLeftIcon(ship.canvas.ui, powerups.definitions[powerup].sprite)
-    if powerup == 'mine' then ship.mines = config.powerups.mineAmt end
+    ships.setPowerup(ship, powerup)
     return powerup
 end
 
@@ -135,23 +134,23 @@ function powerups.apply(ship)
         sounds.stopAndPlay(sounds.ghost)
         ship.invulnerableFrames = config.powerups.aztecCoinDuration
     elseif(ship.powerup == 'redFlag') then 
-        powerups.dropFlag('red')
+        powerups.dropFlag('red', ship)
     elseif(ship.powerup == 'greenFlag') then 
-        powerups.dropFlag('green')
+        powerups.dropFlag('green', ship)
     elseif(ship.powerup == 'blueFlag') then 
-        powerups.dropFlag('blue')
+        powerups.dropFlag('blue', ship)
     elseif(ship.powerup == 'yellowFlag') then 
-        powerups.dropFlag('yellow')
+        powerups.dropFlag('yellow', ship)
     elseif(ship.powerup == 'whiteFlag') then 
-        powerups.dropFlag('white')
+        powerups.dropFlag('white', ship)
     elseif(ship.powerup == 'blackFlag') then 
-        powerups.dropFlag('black')
+        powerups.dropFlag('black', ship)
     end
 end
 
 function powerups.dropFlag(color, ship)
-    local posX = math.cos(ship.r + math.pi) * 65 + ship.x
-    local posY = math.sin(ship.r + math.pi) * 65 + ship.y
+    local posX = math.cos(ship.r + math.pi) * 80 + ship.x
+    local posY = math.sin(ship.r + math.pi) * 80 + ship.y
     flags.new(posX, posY, color)
 end
 
