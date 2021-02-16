@@ -22,10 +22,6 @@ sprites = {
     ui_B = png("ui/buttonB"),
     ui_X = png("ui/buttonX"),
     ui_Y = png("ui/buttonY"),
-    ui_L = png("ui/buttonL"),
-    ui_L1 = png("ui/buttonL1"),
-    ui_R = png("ui/buttonR"),
-    ui_R1 = png("ui/buttonR1"),
     ui_arrow = png("ui/arrow"),
     ui_score = png("ui/scoretile"),
     heart_full = png("ui/full_heart"),
@@ -113,8 +109,6 @@ sprites = {
     yellow_full = png("ships/yellow_full"),
     yellow_heavy = png("ships/yellow_heavy"),
     yellow_light = png("ships/yellow_light"),
-
-    debug_background = png("ui/debug"),
 
     base1 = png("structures/base1"),
     base2 = png("structures/base2"),

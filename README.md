@@ -3,5 +3,3 @@ This is a tiny local multiplayer game in which you control pirateships that figh
 - Working splitscreen support
 - Finishing a game for once
 - Joystick support, currently supports hot plugging of Xbox ONE controllers.
-
-![Screenshot](assets/example.png)
