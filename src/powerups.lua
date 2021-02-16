@@ -11,10 +11,17 @@ powerups.definitions = {
     machinegun = {sprite = sprites.pu_machinegun, chance = config.powerups.machinegunChance},
     aztecCoin = {sprite = sprites.pu_aztecCoin, chance = config.powerups.aztecCoinChance},
     tornado = {sprite = sprites.pu_tornado, chance = config.powerups.tornadoChance},
-    -- use flags as a powerup, so you can pick up no others
+    
     -- grapeshot, sort of shotgun close range
     -- tidal wave, going forward from you
     -- gold pickups to increase speed, more booty! arrrrr!
+
+    redFlag = {sprite = sprites.redFlag, chance = 1000},
+    greenFlag = {sprite = sprites.greenFlag, chance = 0},
+    blueFlag = {sprite = sprites.blueFlag, chance = 0},
+    yellowFlag = {sprite = sprites.yellowFlag, chance = 0},
+    blackFlag = {sprite = sprites.blackFlag, chance = 0},
+    whiteFlag = {sprite = sprites.whiteFlag, chance = 0},
 }
 powerups.rollTable = {}
 

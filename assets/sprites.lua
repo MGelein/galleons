@@ -67,6 +67,13 @@ sprites = {
     smoke7 = png("fx/smoke7"),
     smoke8 = png("fx/smoke8"),
 
+    redFlag = png("ui/pu_flag_red"),
+    blueFlag = png("ui/pu_flag_blue"),
+    greenFlag = png("ui/pu_flag_green"),
+    yellowFlag = png("ui/pu_flag_yellow"),
+    blackFlag = png("ui/pu_flag_black"),
+    whiteFlag = png("ui/pu_flag_white"),
+
     baseA = png('structures/base1'),
     baseB = png('structures/base2'),
     baseC = png('structures/base3'),
