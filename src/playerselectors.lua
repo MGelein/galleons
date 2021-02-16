@@ -9,10 +9,10 @@ playerselectors = {
     forward = 1,
     backward = -1,
 }
-playerselectors.list = {}
 playerselectors.indexToColor = {'red', 'green', 'blue', 'yellow', 'white', 'black'}
 
 function playerselectors.create()
+    playerselectors.list = {}
     local w = config.video.width
     local h = config.video.height
     local xbuffer = 200
