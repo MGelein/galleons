@@ -16,6 +16,7 @@ function game.load()
     level.create()
     ships.create(game.players)
     screens.create()
+
     game.queueAlert('3', 1)
     game.queueAlert('2', 1)
     game.queueAlert('1', 1)
