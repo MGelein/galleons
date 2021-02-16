@@ -324,8 +324,10 @@ function ships.damageByAndScore(damageShip, damagingShip, damage)
     if damageShip.health <= 0 then return end
     ships.damage(damageShip, damage)
     damagingShip.damageDealth = damagingShip.damageDealt + damage
-    if damageShip.health <= 0 and game.scoringMode == 'points' and damageShip ~= damagingShip then
-        damagingShip.score = damagingShip.score + 1
+    if damageShip.health <= 0 and damageShip ~= damagingShip then
+        if game.mode == game.deathmatch then
+            damagingShip.score = damagingShip.score + 1
+        end
     end
 end
 

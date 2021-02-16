@@ -1,9 +1,12 @@
 game = {
-    scoringMode = 'points', -- scoringMode = points | places | coins
     running = false,
     players = {A = 'green', B = 'red'},
-    alerts = {}
+    alerts = {},
+    deathmatch = 'deathmatch',
+    kingOfTheHill = 'kingofthehill',
+    captureTheFlag = 'captureTheFlag'
 } 
+game.mode = game.deathmatch
 
 -- IDEAS FOR GAMEMODES
 -- Capture the flag
@@ -25,6 +28,10 @@ function game.load()
     else
         game.running = true
     end
+end
+
+function game.setMode(gameMode)
+
 end
 
 function game.start()
@@ -77,10 +84,10 @@ function game.update(dt)
         end
     end
     
-    if game.scoringMode == 'places' then
-        game.calculatePlaceOrder()
-    else
+    if game.mode == game.deathmatch then
         game.setUIScores()
+    else
+        game.calculatePlaceOrder()
     end
 end
 
@@ -105,8 +112,13 @@ function game.calculatePlaceOrder()
         end
         if not inserted then table.insert(inOrder, ship) end
     end
-    for i=1, #inOrder do
-        ships.setPlace(inOrder[i], i)
+    local place = 1
+    local prevShip = inOrder[1]
+    for i, ship in ipairs(inOrder) do
+        if ship.score ~= prevShip.score then
+            place = place + 1
+        end
+        ships.setPlace(ship, place)
     end
 end
 
