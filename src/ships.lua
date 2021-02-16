@@ -299,6 +299,7 @@ function ships.new(player, colorName)
     
     local spawn = spawns.get(ship.letter)
     spawn.color = ship.color
+    spawns.addFlag(spawn, colorName)
     ships.setSpawn(ship, spawn.x, spawn.y, spawn.r - math.pi2)
     ships.damage(ship, 0)
     table.insert(ships.list, ship)

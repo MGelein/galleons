@@ -73,6 +73,7 @@ function level.draw(screen)
 end
 
 function level.update()
+    spawns.update()
     if game.mode == game.kingOfTheHill then
         local shipAmt = 0
         for shape, delta in pairs(hc.collisions(level.lagoon.centerZone)) do
