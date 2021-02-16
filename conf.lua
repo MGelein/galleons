@@ -9,7 +9,7 @@ config = {
     showFPS = true,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = false,
+    useTransitions = true,
     fullFontOutlining = false,
 
     ui = {
@@ -74,7 +74,7 @@ config = {
     },
 
     game = {
-        roundTime = 30,
+        roundTime = 300,
     }
 }
 
