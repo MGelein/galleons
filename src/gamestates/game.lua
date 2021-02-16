@@ -6,7 +6,7 @@ game = {
     kingOfTheHill = 'kingofthehill',
     captureTheFlag = 'captureTheFlag'
 } 
-game.mode = game.kingOfTheHill
+game.mode = game.deathmatch
 
 -- IDEAS FOR GAMEMODES
 -- Capture the flag
@@ -30,12 +30,8 @@ function game.load()
     end
 end
 
-function game.setMode(gameMode)
-
-end
-
 function game.start()
-    countdown.start(config.game.roundTime)
+    countdown.start(game.getRoundTime())
     sounds.playBGM()
 end
 
@@ -163,4 +159,10 @@ function game.cleanup()
     splash.removeAll()
     tornadoes.removeAll()
     sounds.stopBGM()
+end
+
+function game.getRoundTime()
+    if game.mode == game.deathmatch then return config.game.matchTime
+    elseif game.mode == game.kingOfTheHill then return config.game.kothTime
+    else return config.game.ctfTime end
 end

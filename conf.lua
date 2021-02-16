@@ -75,7 +75,9 @@ config = {
     },
 
     game = {
-        roundTime = 10,
+        kothTime = 60,
+        matchTime = 300,
+        ctfTime = 600
     }
 }
 
