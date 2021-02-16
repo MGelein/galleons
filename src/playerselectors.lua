@@ -25,7 +25,7 @@ end
 
 function playerselectors.show()
     for i, selector in ipairs(playerselectors.list) do
-        selector.ty = 100
+        selector.ty = 50
     end
 end
 
