@@ -11,6 +11,7 @@ postgame = {
 function postgame.load()
     background.create()
     postgame.entries = {}
+    sounds.playAmbience()
 end
 
 function postgame.start()

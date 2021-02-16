@@ -27,6 +27,13 @@ function bounds.new(posX, posY, width, height)
     table.insert(bounds.list, bound)
 end
 
+function bounds.removeAll()
+    for i, border in ipairs(bounds.list) do
+        hc.remove(border.collider)
+    end
+    bounds.list = {}
+end
+
 function bounds.draw()
     for i, border in ipairs(bounds.list) do
         love.graphics.setColor(1, 1, 1, 0.4)

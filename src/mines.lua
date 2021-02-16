@@ -118,3 +118,16 @@ function mines.detonate(mine)
         table.insert(mines.shockwaves, shockwave)
     end
 end
+
+function mines.removeAll()
+    for i, mine in ipairs(mines.list) do
+        hc.remove(mine.collider)
+    end
+    for i, shockwave in ipairs(mines.shockwaves) do
+        hc.remove(shockwave.collider)
+    end
+    mines.list = {}
+    mines.toRemove = {}
+    mines.shockwaves = {}
+    mines.shockwavesToRemove = {}
+end

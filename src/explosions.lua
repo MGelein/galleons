@@ -65,3 +65,8 @@ end
 function explosions.remove(explosion)
     table.insert(explosions.toRemove, explosion)
 end
+
+function explosions.removeAll()
+    explosions.list = {}
+    explosions.toRemove = {}
+end

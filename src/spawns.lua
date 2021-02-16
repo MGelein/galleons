@@ -40,3 +40,10 @@ function spawns.createNumber(index)
     spawn.collider:rotate(spawn.r)
     return spawn
 end
+
+function spawns.removeAll()
+    for i, spawn in ipairs(spawns.list) do
+        hc.remove(spawn.collider)
+    end
+    spawns.list = {}
+end

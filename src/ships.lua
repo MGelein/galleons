@@ -305,6 +305,13 @@ function ships.new(player, colorName)
     return ship
 end
 
+function ships.removeAll()
+    for i, ship in ipairs(ships.list) do
+        hc.remove(ship.collider)
+    end 
+    ships.list = {}
+end
+
 function ships.setPlace(ship, place)
     ship.canvas.ui.scoreValue = place
 end

@@ -130,3 +130,11 @@ function powerups.apply(ship)
         ship.invulnerableFrames = config.powerups.aztecCoinDuration
     end
 end
+
+function powerups.removeAll()
+    for i, powerup in ipairs(powerups.list) do
+        hc.remove(powerup.collider)
+    end
+    powerups.toRemove = {}
+    powerups.list = {}
+end

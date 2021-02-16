@@ -19,3 +19,9 @@ function level.draw(screen)
     spawns.draw()
     bounds.draw()
 end
+
+function level.destroy()
+    bounds.removeAll()
+    spawns.removeAll()
+    sounds.stopAmbience()
+end

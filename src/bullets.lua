@@ -67,3 +67,11 @@ function bullets.remove(bullet)
     hc.remove(bullet.collider)
     table.insert(bullets.toRemove, bullet)
 end
+
+function bullets.removeAll()
+    for i, bullet in ipairs(bullets.list) do
+        hc.remove(bullet.collider)
+    end
+    bullets.list = {}
+    bullets.toRemove = {}
+end

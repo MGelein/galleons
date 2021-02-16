@@ -119,3 +119,11 @@ function tornadoes.moveAndScaleCollider(tornado)
     end
     tornado.collider:moveTo(tornado.x, tornado.y)
 end
+
+function tornadoes.removeAll()
+    for i, tornado in ipairs(tornadoes.list) do
+        hc.remove(tornado.collider)
+    end
+    tornadoes.list = {}
+    tornadoes.toRemove = {}
+end

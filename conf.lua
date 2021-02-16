@@ -3,13 +3,13 @@ config = {
         width = 1600,
         height = 900,
         title = 'Galleons',
-        fullscreen = false,
+        fullscreen = false, -- if fullscreen is set, the window size becomes useless
         dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
     },
     showFPS = true,
-    showColliders = false,
+    showColliders = true,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = true,
+    useTransitions = false,
     fullFontOutlining = false,
 
     ui = {

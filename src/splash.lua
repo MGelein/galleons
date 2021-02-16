@@ -56,3 +56,8 @@ end
 function splash.remove(s)
     table.insert(splash.toRemove, s)
 end
+
+function splash.removeAll()
+    splash.list = {}
+    splash.toRemove = {}
+end
