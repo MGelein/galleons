@@ -20,6 +20,7 @@ function bullets.new(parent, xPos, yPos, xVel, yVel, maxAge)
     bullet.collider.parent = bullet
     bullet.collider.class = 'bullet'
     table.insert(bullets.list, bullet)
+    smoke.new(xPos, yPos, 0.5)
     return bullet
 end
 

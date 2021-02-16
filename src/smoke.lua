@@ -2,12 +2,12 @@ smoke = {}
 smoke.list = {}
 smoke.toRemove = {}
 
-function smoke.new(posX, posY)
+function smoke.new(posX, posY, scale)
     local newSmoke = {
         x = posX,
         y = posY,
         r = math.random() * math.twopi,
-        s = math.random() * .5 + .5,
+        s = math.random() * (scale / 2) + (scale / 2),
         frame = 1,
         frameCounter = 0,
     }
@@ -19,13 +19,15 @@ function smoke.draw()
         local image = animations.smoke.frames[smokeObj.frame]
         local ox = image:getWidth() / 2
         local oy = image:getHeight() / 2
+        love.graphics.setColor(1, 1, 1, 1 - (smokeObj.frame * .05))
         love.graphics.draw(image, smokeObj.x, smokeObj.y, smokeObj.r, smokeObj.s, smokeObj.s, ox, oy)
     end
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 function smoke.update()
     for i, smokeObj in ipairs(smoke.list) do
-        smokeObj.frameCounter = smokeObj.frameCounter + 1
+        smokeObj.frameCounter = smokeObj.frameCounter + love.math.random()
         if smokeObj.frameCounter >= animations.smoke.speed then
             smokeObj.frameCounter = 0
             smokeObj.frame = smokeObj.frame + 1
