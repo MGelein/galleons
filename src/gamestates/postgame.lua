@@ -38,9 +38,9 @@ function postgame.update(dt)
     end
 
     if controller.A ~= nil then
-        if controller.A.isADown() then
+        if controller.A.isXDown() then
             gamestates.setActive(game)
-        elseif controller.A.isBDown() then
+        elseif controller.A.isYDown() then
             gamestates.setActive(pregame)
         end
     end
