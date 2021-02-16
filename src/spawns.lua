@@ -35,7 +35,7 @@ function spawns.createNumber(index)
     }
     spawn.collider = hc.rectangle(-w2 * .75, -w2 * .75, w2 * 1.5, w2 * 1.5)
     spawn.collider.parent = spawn
-    spawn.collider.class = 'spawn'
+    spawn.collider.class = 'land'
     spawn.collider:moveTo(spawn.x, spawn.y)
     spawn.collider:rotate(spawn.r)
     return spawn

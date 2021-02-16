@@ -2,7 +2,7 @@ collisions = {}
 
 function collisions.handleShip(ship)
     for shape, delta in pairs(hc.collisions(ship.collider)) do
-        if shape.class == 'spawn' then
+        if shape.class == 'land' then
             collisions.resolve(ship, delta, 1, 0.2)
         elseif shape.class == 'border' then
             collisions.resolve(ship, delta, 0.03, 0.9)
@@ -66,7 +66,7 @@ end
 
 function collisions.handlePowerup(powerup)
     for shape, delta in pairs(hc.collisions(powerup.collider)) do
-        if shape.class == 'spawn' then
+        if shape.class == 'land' then
             powerups.remove(powerup)
         elseif shape.class == 'tornado' or shape.class == 'shockwave' then
             sounds.woodBreak()
