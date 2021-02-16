@@ -29,6 +29,7 @@ end
 
 function game.stop()
     game.running = false
+    postgame.results = game.gatherResults()
     gamestates.setActive(postgame)
 end
 
@@ -115,4 +116,19 @@ function game.drawAlert(alert)
     alert.y = ((config.video.height / 2 - 100) - alert.y) * 0.2 + alert.y
     love.graphics.setFont(fonts.alert)
     fonts.outlineText(alert.text, 0, alert.y, config.video.width, 'center')
+end
+
+function game.gatherResults()
+    local results = {}
+    game.calculatePlaceOrder()
+    for i, ship in ipairs(ships.list) do
+        local result = {
+            score = ship.score,
+            player = ship.letter,
+            color = ship.namedColor,
+            place = gui.getPlaceName(ship.canvas.ui.scoreValue)
+        }
+        table.insert(results, result)
+    end
+    return results
 end

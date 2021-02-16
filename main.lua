@@ -2,7 +2,7 @@ require "imports"
 
 function love.load()
     config.createWindow()
-    gamestates.setActive(postgame)
+    gamestates.setActive(game)
 
 end
  

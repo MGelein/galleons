@@ -279,6 +279,7 @@ function ships.new(player, colorName)
         alpha = 1,
         red = 1,
         color = sprites.colorFromName[colorName],
+        namedColor = colorName,
         
         cox = 0,
         coy = 0,
