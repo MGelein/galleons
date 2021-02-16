@@ -16,7 +16,7 @@ powerups.definitions = {
     -- tidal wave, going forward from you
     -- gold pickups to increase speed, more booty! arrrrr!
 
-    redFlag = {sprite = sprites.redFlag, chance = 1000},
+    redFlag = {sprite = sprites.redFlag, chance = 0},
     greenFlag = {sprite = sprites.greenFlag, chance = 0},
     blueFlag = {sprite = sprites.blueFlag, chance = 0},
     yellowFlag = {sprite = sprites.yellowFlag, chance = 0},

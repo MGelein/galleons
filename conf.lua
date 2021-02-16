@@ -1,17 +1,17 @@
 config = {
     window = {
-        width = 1600,
-        height = 900,
+        width = 1920,
+        height = 1080,
         title = 'Galleons',
-        fullscreen = false, -- if fullscreen is set, the window size becomes useless
+        fullscreen = true, -- if fullscreen is set, the window size becomes useless
         dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
     },
-    showFPS = true,
-    showColliders = true,
+    showFPS = false,
+    showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = false,
+    useTransitions = true,
     fullFontOutlining = false,
-    useGameCountdown = false,
+    useGameCountdown = true,
 
     ui = {
         moveTimeout = 10,
@@ -76,7 +76,7 @@ config = {
 
     game = {
         kothTime = 60,
-        matchTime = 30,
+        matchTime = 300,
         ctfTime = 600
     }
 }
