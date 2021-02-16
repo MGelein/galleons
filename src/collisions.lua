@@ -1,4 +1,5 @@
 collisions = {}
+collisions.point = hc.circle(0, 0, 5) -- this collider is used to probe for objects at locations
 
 function collisions.handleShip(ship)
     for shape, delta in pairs(hc.collisions(ship.collider)) do
@@ -35,6 +36,14 @@ function collisions.handleShockwave(shockwave)
     for shape, dleta in pairs(hc.collisions(shockwave.collider)) do
         if shape.class == 'mine' then mines.detonate(shape.parent) end
     end
+end
+
+function collisions.isLand(xPos, yPos)
+    collisions.point:moveTo(xPos, yPos)
+    for shape, delta in pairs(hc.collisions(collisions.point)) do
+        if shape.class == 'land' then return true end
+    end
+    return false
 end
 
 function collisions.handleBullet(bullet)

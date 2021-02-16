@@ -3,11 +3,15 @@ splash.list = {}
 splash.toRemove = {}
 
 function splash.new(xPos, yPos, radius)
-    splash.newSilent(xPos, yPos, radius)
-    sounds.splash()
+    if splash.newSilent(xPos, yPos, radius) then
+        sounds.splash()
+    end
 end
 
 function splash.newSilent(xPos, yPos, radius)
+    if collisions.isLand(xPos, yPos) then
+        return false
+    end
     local s = {
         x = xPos,
         y = yPos,
