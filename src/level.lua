@@ -32,8 +32,14 @@ function level.createLagoonColliders()
     local topLeftIsland = hc.polygon( -410,-330,  -330,-410,  -170,-410,  -160,-310,  -310,-170,  -410,-170)
     level.addLagoonCollider(topLeftIsland, 'land')
 
+    local topRightIsland = hc.polygon( 410,-410,  410,-180,  310,-170,  190,-290,  120,-290,  110,-400)
+    level.addLagoonCollider(topRightIsland, 'land')
+
     local bottomLeftIsland = hc.polygon( -410,410,  -410,170,  -250,170,  -170,250,  -170,410)
     level.addLagoonCollider(bottomLeftIsland, 'land')
+    
+    local bottomRightIsland = hc.polygon( 410,410,  120,410,  110,300,  290,290,  300,180,  400,170)
+    level.addLagoonCollider(bottomRightIsland, 'land')
 end
 
 function level.addLagoonCollider(collider, class)
