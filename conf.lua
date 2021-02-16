@@ -7,9 +7,9 @@ config = {
         dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
     },
     showFPS = false,
-    showColliders = true,
+    showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = false,
+    useTransitions = true,
     fullFontOutlining = false,
 
     ui = {
