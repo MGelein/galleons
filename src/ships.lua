@@ -330,8 +330,8 @@ function ships.damageByAndScore(damageShip, damagingShip, damage)
 end
 
 function ships.setSpawn(ship, x, y, r)
-    ship.spawn.x = x * 0.95
-    ship.spawn.y = y * 0.95
+    ship.spawn.x = x * 0.9
+    ship.spawn.y = y * 0.9
     ship.spawn.r = r
     ship.x = ship.spawn.x
     ship.y = ship.spawn.y

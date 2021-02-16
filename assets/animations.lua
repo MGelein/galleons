@@ -47,6 +47,11 @@ animations = {
     clouds = {
         frames = {sprites.cloud1, sprites.cloud2, sprites.cloud3},
         speed = 0,
+    },
+
+    islands = {
+        frames = {sprites.island2, sprites.island4, sprites.island5, sprites.island6},
+        speed = 0,
     }
 }
 

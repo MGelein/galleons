@@ -62,6 +62,12 @@ sprites = {
     baseB = png('structures/base2'),
     baseC = png('structures/base3'),
     baseD = png('structures/base4'),
+    island1 = png('structures/island1'),
+    island2 = png('structures/island2'),
+    island3 = png('structures/island3'),
+    island4 = png('structures/island4'),
+    island5 = png('structures/island5'),
+    island6 = png('structures/island6'),
 
     crate = png('cannon/crate'),
     mine = png('cannon/mine'),
