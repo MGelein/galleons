@@ -133,3 +133,15 @@ function game.gatherResults()
     end
     return results
 end
+
+function game.cleanup()
+    bullets.removeAll()
+    explosions.removeAll()
+    mines.removeAll()
+    powerups.removeAll()
+    ships.removeAll()
+    spawns.removeAll()
+    splash.removeAll()
+    tornadoes.removeAll()
+    sounds.stopBGM()
+end

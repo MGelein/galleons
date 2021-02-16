@@ -74,7 +74,7 @@ config = {
     },
 
     game = {
-        roundTime = 300,
+        roundTime = 20,
     }
 }
 
