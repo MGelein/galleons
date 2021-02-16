@@ -9,11 +9,7 @@ game = {
 game.mode = game.deathmatch
 
 -- IDEAS FOR GAMEMODES
--- Capture the flag
--- King of the hill
--- Deathmatch
 -- Treasure Hunt (robbing merchants and other players or finding coins?)
--- Races?
 
 function game.load()
     level.create()
