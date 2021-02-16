@@ -43,13 +43,14 @@ function collisions.isLand(xPos, yPos)
     for shape, delta in pairs(hc.collisions(collisions.point)) do
         if shape.class == 'land' then return true end
     end
+    collisions.point:moveTo(bounds.dim, bounds.dim)
     return false
 end
 
 function collisions.handleBullet(bullet)
     for shape, delta in pairs(hc.collisions(bullet.collider)) do
         local class = shape.class
-        if class == 'bullet' or class == 'border' or class == 'shockwave' or class == 'tornado' or class == 'center' then
+        if class == 'bullet' or class == 'border' or class == 'shockwave' or class == 'tornado' or class == 'center' or class =='land' then
             -- do nothing
         else
             bullets.remove(bullet)

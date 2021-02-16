@@ -43,7 +43,11 @@ function bullets.update()
 
         if bullet.frames > bullet.maxFrames then
             bullets.remove(bullet)
-            splash.new(bullet.x, bullet.y, bullets.ox)
+            if collisions.isLand(bullet.x, bullet.y) then
+                explosions.new(bullet.x, bullet.y)
+            else
+                splash.new(bullet.x, bullet.y, bullets.ox)
+            end
         end
         collisions.handleBullet(bullet)
     end
