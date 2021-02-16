@@ -9,9 +9,9 @@ config = {
     showFPS = false,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = false,
+    useTransitions = true,
     fullFontOutlining = false,
-    useGameCountdown = false,
+    useGameCountdown = true,
 
     ui = {
         moveTimeout = 10,
@@ -76,7 +76,7 @@ config = {
 
     game = {
         kothTime = 60,
-        matchTime = 300,
+        matchTime = 30,
         ctfTime = 600
     }
 }

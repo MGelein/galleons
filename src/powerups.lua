@@ -12,7 +12,6 @@ powerups.definitions = {
     aztecCoin = {sprite = sprites.pu_aztecCoin, chance = config.powerups.aztecCoinChance},
     tornado = {sprite = sprites.pu_tornado, chance = config.powerups.tornadoChance},
     -- use flags as a powerup, so you can pick up no others
-    -- maybe kraken going for the leader
     -- grapeshot, sort of shotgun close range
     -- tidal wave, going forward from you
     -- gold pickups to increase speed, more booty! arrrrr!

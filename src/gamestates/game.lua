@@ -102,7 +102,7 @@ function game.calculatePlaceOrder()
         for j=1, #inOrder do
             local oldShip = inOrder[j]
             if ship.score > oldShip.score then
-                table.insert(inOrder, ship, j)
+                table.insert(inOrder, j, ship) -- Bad argument #2 number expected, got table
                 inserted = true
                 break
             end
@@ -117,6 +117,7 @@ function game.calculatePlaceOrder()
         end
         ships.setPlace(ship, place)
     end
+    return inOrder
 end
 
 function game.queueAlert(alert, seconds)
@@ -136,8 +137,8 @@ end
 
 function game.gatherResults()
     local results = {}
-    game.calculatePlaceOrder()
-    for i, ship in ipairs(ships.list) do
+    local inOrder = game.calculatePlaceOrder()
+    for i, ship in ipairs(inOrder) do
         local result = {
             score = ship.score,
             player = ship.letter,
