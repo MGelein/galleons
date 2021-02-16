@@ -16,6 +16,15 @@ level.islands = {
         {x = 0, y = spawnOffset, r = 0},
     }
 }
+level.lagoon = {
+    sprite = sprites.lagoon,
+    ox = sprites.lagoon:getWidth() / 2,
+    oy = sprites.lagoon:getHeight() / 2,
+}
+
+function level.drawLagoon()
+    love.graphics.draw(level.lagoon.sprite, 0, 0, 0, 1, 1, level.lagoon.ox, level.lagoon.oy)
+end
 
 function level.create()
     bounds.create()
@@ -29,6 +38,7 @@ function level.draw(screen)
     spawns.draw()
     bounds.draw()
     islands.draw()
+    level.drawLagoon()
 end
 
 function level.destroy()
