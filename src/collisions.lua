@@ -39,25 +39,26 @@ end
 
 function collisions.handleBullet(bullet)
     for shape, delta in pairs(hc.collisions(bullet.collider)) do
-        if shape.class == 'bullet' or shape.class == 'border' or shape.class == 'shockwave' or shape.class == 'tornado' then
+        local class = shape.class
+        if class == 'bullet' or class == 'border' or class == 'shockwave' or class == 'tornado' or class == 'center' then
             -- do nothing
         else
             bullets.remove(bullet)
             explosions.new(bullet.x, bullet.y)
 
-            if shape.class == 'mine' then mines.detonate(shape.parent) end
+            if class == 'mine' then mines.detonate(shape.parent) end
             
-            if shape.class == 'ship' or shape.class == 'powerup' then
+            if class == 'ship' or class == 'powerup' then
                 sounds.impact()
             else
                 sounds.impactSand()
             end
 
-            if shape.class == 'ship' then
+            if class == 'ship' then
                 if not shape.parent.invulnerable then
                     ships.damageByAndScore(shape.parent, bullet.ship, config.bullets.damage)
                 end
-            elseif shape.class == 'powerup' then
+            elseif class == 'powerup' then
                 powerups.remove(shape.parent)
             end
         end
