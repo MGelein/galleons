@@ -2,7 +2,7 @@ require "imports"
 
 function love.load()
     config.createWindow()
-    gamestates.setActive(pregame)
+    gamestates.setActive(mainmenu)
 end
  
 function love.draw()

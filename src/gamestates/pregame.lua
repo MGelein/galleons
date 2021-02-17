@@ -6,6 +6,7 @@ function pregame.load()
     pregame.gameModeSelected = false
     background.create('pregame')
     playerselectors.create()
+    modeselector.create()
 end
 
 function pregame.start()
@@ -26,6 +27,8 @@ function pregame.update(dt)
 
     if playerselectors.isEveryoneReady() and pregame.gameModeSelected then
         game.players = playerselectors.getPlayers()
+        game.mode = modeselector.mode
+        modeselector.updateRoundTime()
         gamestates.setActive(game)
     end
 
