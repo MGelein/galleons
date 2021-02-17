@@ -7,11 +7,9 @@ mainmenu = {
 mainmenu.title = {
     x = 0,
     y = 0,
-    r = 0,
     text = 'Galleons',
     angleX = love.math.random() * math.pi,
     angleY = love.math.random() * math.pi,
-    angleR = love.math.random() * math.pi,
 }
 
 mainmenu.buttons = {
@@ -62,11 +60,8 @@ function mainmenu.drawConnectPrompt()
 end
 
 function mainmenu.drawTitle(title)
-    love.graphics.push()
     love.graphics.setFont(fonts.title)
-    love.graphics.rotate(title.r)
     fonts.outlineText(title.text, title.x, title.y, title.x + config.video.width, 'center')
-    love.graphics.pop()
 end
 
 function mainmenu.update(dt)
@@ -84,10 +79,8 @@ end
 function mainmenu.updateTitle(title)
     title.x = math.sin(title.angleX) * 10
     title.y = math.sin(title.angleY) * 10
-    title.r = math.sin(title.angleR) * 0.01
     title.angleX = title.angleX + 0.01
     title.angleY = title.angleY + 0.011
-    title.angleR = title.angleR + 0.012
 end
 
 function mainmenu.handleButtons()
