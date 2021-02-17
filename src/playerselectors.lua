@@ -47,10 +47,10 @@ function playerselectors.new(character, posX, posY)
     table.insert(playerselectors.list, selector)
 end
 
-function playerselectors.update(pregameState)
+function playerselectors.update()
     for i, selector in ipairs(playerselectors.list) do
         selector.y = (selector.ty - selector.y) * 0.1 + selector.y
-        if pregameState > 0 then
+        if pregame.gameModeSelected then
             if controller[selector.letter] then
                 if selector.waiting then
                     selector.colorIndex = playerselectors.nextAvailableColorIndex(1, playerselectors.forward)
