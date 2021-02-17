@@ -27,6 +27,7 @@ require 'src.tornadoes'
 require 'src.powerups'
 require 'src.background'
 require 'src.playerselectors'
+require 'src.modeselector'
 require 'src.islands'
 
 require 'src.gamestates.gamestates'

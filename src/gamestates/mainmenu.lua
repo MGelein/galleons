@@ -25,6 +25,7 @@ function mainmenu.load()
 end
 
 function mainmenu.start()
+    sounds.playAmbience()
 end
 
 function mainmenu.stop()

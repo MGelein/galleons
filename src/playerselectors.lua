@@ -41,6 +41,12 @@ function playerselectors.new(character, posX, posY)
     table.insert(playerselectors.list, selector)
 end
 
+function playerselectors.setTimeout(amt)
+    for i, selector in ipairs(playerselectors.list) do
+        selector.timeout = amt
+    end
+end
+
 function playerselectors.update()
     for i, selector in ipairs(playerselectors.list) do
         selector.y = (selector.ty - selector.y) * 0.1 + selector.y

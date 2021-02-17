@@ -1,9 +1,9 @@
 pregame = {
-    gameModeSelected = true,
+    gameModeSelected = false,
 }
 
 function pregame.load()
-    pregame.gameModeSelected = true
+    pregame.gameModeSelected = false
     background.create('pregame')
     playerselectors.create()
 end
@@ -14,6 +14,7 @@ end
 
 function pregame.draw()
     background.draw()
+    modeselector.draw()
     playerselectors.draw()
     pregame.drawButtonPrompts()
 end
@@ -21,8 +22,9 @@ end
 function pregame.update(dt)
     background.update()
     playerselectors.update()
+    modeselector.update()
 
-    if playerselectors.isEveryoneReady() then
+    if playerselectors.isEveryoneReady() and pregame.gameModeSelected then
         game.players = playerselectors.getPlayers()
         gamestates.setActive(game)
     end
@@ -32,16 +34,26 @@ function pregame.update(dt)
             gamestates.setActive(mainmenu)
         end
         if controller.A.isXDown() and pregame.gameModeSelected then
-            pregame.gameModeSelected = false
+            pregame.modeUnset()
         end
     end
+end
+
+function pregame.modeSet()
+    pregame.gameModeSelected = true
+end
+
+function pregame.modeUnset()
+    pregame.gameModeSelected = false
+    playerselectors.setTimeout(60)
 end
 
 function pregame.drawButtonPrompts()
     love.graphics.setFont(fonts.place)
     love.graphics.push()
-    love.graphics.translate(520, 0)
+    love.graphics.translate(320, 0)
     if pregame.gameModeSelected then
+        love.graphics.translate(200, 0)
         love.graphics.circle('fill', 25, 45, 10)
         love.graphics.setColor(0.2, 0.2, 0.8)
         love.graphics.draw(sprites.ui_X, 0, 20)
