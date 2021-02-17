@@ -4,7 +4,7 @@ end
 
 
 fonts = {
-    title = otf('chomsky', 32),
+    title = otf('chomsky', 200),
     normal = otf('chomsky', 32),
     place = otf('chomsky', 40),
     result = otf('chomsky', 64),
