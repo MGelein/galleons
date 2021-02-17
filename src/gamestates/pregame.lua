@@ -6,7 +6,6 @@ function pregame.load()
     pregame.gameModeSelected = true
     background.create('pregame')
     playerselectors.create()
-    playerselectors.show()
 end
 
 function pregame.start()

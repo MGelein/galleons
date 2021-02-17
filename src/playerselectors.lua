@@ -23,12 +23,6 @@ function playerselectors.create()
     playerselectors.new('D', xbuffer + 3 * selWidth, 0)
 end
 
-function playerselectors.show()
-    for i, selector in ipairs(playerselectors.list) do
-        selector.ty = 50
-    end
-end
-
 function playerselectors.new(character, posX, posY)
     local selector = {
         letter = character,
@@ -51,6 +45,7 @@ function playerselectors.update()
     for i, selector in ipairs(playerselectors.list) do
         selector.y = (selector.ty - selector.y) * 0.1 + selector.y
         if pregame.gameModeSelected then
+            selector.ty = 50
             if controller[selector.letter] then
                 if selector.waiting then
                     selector.colorIndex = playerselectors.nextAvailableColorIndex(1, playerselectors.forward)
@@ -84,7 +79,7 @@ function playerselectors.update()
             else
                 selector.waiting = true
             end
-        end
+        else selector.ty = 5000 + selector.x * 10 end
     end
 end
 
