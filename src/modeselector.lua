@@ -14,7 +14,7 @@ modeselector = {
 -- playtime (X)
 
 function modeselector.create()
-    modeselector.mode = game.captureTheFlag
+    modeselector.mode = game.deathmatch
     modeselector.mins = 5
 end
 
