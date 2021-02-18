@@ -11,6 +11,8 @@ end
 
 function pregame.start()
     sounds.playAmbience()
+    pregame.gameModeSelected = false
+    modeselector.timeout = 60
 end
 
 function pregame.draw()
@@ -28,7 +30,7 @@ function pregame.update(dt)
     if playerselectors.isEveryoneReady() and pregame.gameModeSelected then
         game.players = playerselectors.getPlayers()
         game.mode = modeselector.mode
-        modeselector.updateRoundTime()
+        game.roundTime = modeselector.updateRoundTime()
         gamestates.setActive(game)
     end
 
@@ -62,6 +64,13 @@ function pregame.drawButtonPrompts()
         love.graphics.draw(sprites.ui_X, 0, 20)
         love.graphics.setColor(1, 1, 1, 1)
         fonts.outlineText('Back', 50, 15, 800, 'left')
+    else
+        love.graphics.translate(200, 0)
+        love.graphics.circle('fill', 25, 45, 10)
+        love.graphics.setColor(0.2, 0.8, 0.2)
+        love.graphics.draw(sprites.ui_A, 0, 20)
+        love.graphics.setColor(1, 1, 1, 1)
+        fonts.outlineText('Accept', 50, 15, 800, 'left')
     end
     
     love.graphics.setColor(1, 1, 1, 1)

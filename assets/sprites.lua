@@ -9,6 +9,7 @@ sprites = {
     ui_tile_large = png("ui/tile_broad"),
     ui_minimap_bg = png("ui/minimap_bg"),
     ui_playerselector_bg = png("ui/playerselector_bg"),
+    ui_timeselector = png("ui/timeselector"),
     ui_tileR1 = png("ui/tileR1overlay"),
     ui_tileL1 = png("ui/tileL1overlay"),
     ui_cannonball = png("ui/cannonball"),

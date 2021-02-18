@@ -7,6 +7,7 @@ game = {
     captureTheFlag = 'captureTheFlag'
 } 
 game.mode = game.deathmatch
+game.roundTime = config.game.kothTime
 
 -- IDEAS FOR GAMEMODES
 -- Treasure Hunt (robbing merchants and other players or finding coins?)
@@ -27,7 +28,7 @@ function game.load()
 end
 
 function game.start()
-    countdown.start(game.getRoundTime())
+    countdown.start(game.roundTime)
     sounds.playBGM()
 end
 
@@ -158,10 +159,4 @@ function game.cleanup()
     splash.removeAll()
     tornadoes.removeAll()
     sounds.stopBGM()
-end
-
-function game.getRoundTime()
-    if game.mode == game.deathmatch then return config.game.matchTime
-    elseif game.mode == game.kingOfTheHill then return config.game.kothTime
-    else return config.game.ctfTime end
 end
