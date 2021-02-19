@@ -359,6 +359,7 @@ function ships.get(letter)
 end
 
 function ships.respawn(ship)
+    if string.find(ship.powerup, 'Flag') then powerups.apply(ship) end
     ship.x = ship.spawn.x
     ship.y = ship.spawn.y
     ship.r = ship.spawn.r

@@ -43,7 +43,7 @@ function postgame.update(dt)
         if controller.A.isXDown() then
             gamestates.setActive(game)
         elseif controller.A.isYDown() then
-            gamestates.setActive(pregame)
+            gamestates.setActive(mainmenu)
         end
     end
 end
