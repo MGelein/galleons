@@ -51,7 +51,7 @@ sounds = {
 
 local function stopAndPlay(source)
     source:stop()
-    source:setVolume(config.audio.fxVolume)
+    source:setVolume(config.audio.fxVolume * config.audio.fxMult)
     source:play()
 end
 sounds.stopAndPlay = stopAndPlay
@@ -103,7 +103,7 @@ function sounds.woodBreak()
  end
 
 function sounds.playBGM()
-    sounds.bgm:setVolume(config.audio.musicVolume)
+    sounds.bgm:setVolume(config.audio.musicVolume * config.audio.musicMult)
     sounds.bgm:play()
 end
 
@@ -112,7 +112,7 @@ function sounds.stopBGM()
 end
 
 function sounds.playAmbience()
-    sounds.sea:setVolume(config.audio.ambienceVolume)
+    sounds.sea:setVolume(config.audio.ambienceVolume * config.audio.ambienceMult)
     sounds.sea:play()
 end
 
@@ -123,6 +123,6 @@ end
 
 function sounds.playTransition()
     sounds.transition:stop()
-    sounds.transition:setVolume(config.audio.fxVolume)
+    sounds.transition:setVolume(config.audio.fxVolume * config.audio.fxMult)
     sounds.transition:play()
 end

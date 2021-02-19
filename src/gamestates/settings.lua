@@ -1,4 +1,6 @@
-settings = {}
+settings = {
+    selectedRow = 1
+}
 
 function settings.load()
     background.create()
@@ -11,6 +13,11 @@ end
 function settings.draw()
     background.draw()
     settings.drawButtonPrompts()
+    -- resolution
+    -- fullscreen
+    -- fx volume
+    -- ambience volume
+    -- music volume
 end
 
 function settings.update(dt)
@@ -22,7 +29,7 @@ function settings.update(dt)
 end
 
 function settings.parseControlInput(controller)
-    
+    if controller.isYDown() then gamestates.setActive(mainmenu) end
 end
 
 function settings.drawButtonPrompts()

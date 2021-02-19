@@ -20,7 +20,10 @@ config = {
     audio = {
         fxVolume = 0.5,
         musicVolume = 0.5,
-        ambienceVolume = 0.1
+        ambienceVolume = 0.1,
+        fxMult = 1,
+        musicMult = 1,
+        ambienceMult = 1,
     },
 
     video = {

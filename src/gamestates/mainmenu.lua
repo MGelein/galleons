@@ -91,7 +91,7 @@ function mainmenu.handleButtons()
     if controller.A.isADown() then
         gamestates.setActive(pregame)
     elseif controller.A.isBDown() then
-        -- go to settings
+        gamestates.setActive(settings)
     elseif controller.A.isXDown() then
         love.event.quit()
     end
