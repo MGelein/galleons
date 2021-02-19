@@ -24,11 +24,6 @@ function screens.create()
 end
 
 function screens.setResolution(x, y)
-    if config.window.fullscreen then
-        local res = screens.getHighestResolution()
-        x = res.width
-        y = res.height
-    end
     x = x / config.window.dpiScale
     y = y / config.window.dpiScale
     screens.mainScale.x = x / config.video.width
