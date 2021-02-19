@@ -392,3 +392,9 @@ function ships.create(defs)
         ships.new(letter, color)
     end
 end
+
+function ships.getBySpawn(spawn)
+    for i, ship in ipairs(ships.list) do
+        if ship.color == spawn.color then return ship end
+    end
+end

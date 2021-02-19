@@ -53,6 +53,7 @@ function spawns.update()
         spawn.flagTime = spawn.flagTime + 0.02 * love.math.random()
         spawn.flagSwayTime = spawn.flagSwayTime + 0.021 * love.math.random()
     end
+    if game.mode == game.captureTheFlag then spawns.countFlags() end
 end
 
 function spawns.draw()
@@ -115,6 +116,24 @@ function spawns.getFlag(spawn)
     else
         return 'none'
     end
+end
+
+function spawns.countFlags()
+    for name, spawn in pairs(spawns.list) do
+        local score = spawns.countFlagsFor(spawn)
+        local ship = ships.getBySpawn(spawn)
+        if ship then ship.score = score end
+    end
+end
+
+function spawns.countFlagsFor(spawn)
+    local count = 0
+    if spawn.flag1 ~= 'none' then count = count + 1 end
+    if spawn.flag2 ~= 'none' then count = count + 1 end
+    if spawn.flag3 ~= 'none' then count = count + 1 end
+    if spawn.flag4 ~= 'none' then count = count + 1 end
+    if spawn.flag5 ~= 'none' then count = count + 1 end
+    return count
 end
 
 function spawns.stealFlag(spawn, ship)

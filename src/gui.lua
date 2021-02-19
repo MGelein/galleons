@@ -65,10 +65,14 @@ function gui.draw(ui, w, h)
 end
 
 function gui.drawOutlinedString(ui, x, y)
-    local string = ui.scoreValue .. ' pts' -- default assumed is deathmatch
-    if game.mode == game.captureTheFlag or game.mode == game.kingOfTheHill then 
-        string = gui.getPlaceName(ui.scoreValue) 
+    local unit = ' pts'
+    if game.mode == game.captureTheFlag then
+        unit = ' flags'
+        if ui.scoreValue == 1 then unit = ' flag' end
     end
+    local string = ui.scoreValue .. unit -- default assumed is deathmatch
+    if game.mode == game.kingOfTheHill then string = gui.getPlaceName(ui.scoreValue) end
+    if game.mode == game.captureTheFlag then string = ui.scoreValue .. unit end
 
     local offset = minimap.size
     love.graphics.draw(sprites.ui_tile_wide, x - offset, y - offset / 2)

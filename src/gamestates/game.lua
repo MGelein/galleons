@@ -84,11 +84,7 @@ function game.update(dt)
         end
     end
     
-    if game.mode == game.deathmatch or game.mode == game.kingOfTheHill then
-        game.setUIScores()
-    else
-        game.calculatePlaceOrder()
-    end
+    game.setUIScores()
 end
 
 function game.setUIScores()
