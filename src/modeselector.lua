@@ -4,16 +4,20 @@ modeselector = {
     y = -5000,
     ty = -5000,
     timeout = 60,
-    xtimeout = 0,
-    btimeout = 0,
+    moveTimeout = 0,
     ox = sprites.ui_playerselector_bg:getWidth(),
     oy = sprites.ui_playerselector_bg:getHeight() / 2,
+    selectedRow = 1,
+    modeIndex = 1,
+    timeIndex = 1,
+    times = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 }
 
 -- gamemode (B)
 -- playtime (X)
 
 function modeselector.create()
+    modeselector.modes = {game.deathmatch, game.captureTheFlag, game.kingOfTheHill}
     modeselector.mode = game.deathmatch
     modeselector.mins = 5
 end
@@ -24,16 +28,10 @@ function modeselector.draw()
     love.graphics.push()
     love.graphics.translate(0, modeselector.y)
 
-    love.graphics.draw(sprites.ui_playerselector_bg, config.video.width / 2, 100, -math.pi / 2, 1, 1, modeselector.ox, modeselector.oy)
+    if modeselector.selectedRow == 1 then
+        love.graphics.draw(sprites.ui_playerselector_bg, config.video.width / 2, 100, -math.pi / 2, 1, 1, modeselector.ox, modeselector.oy)
+    end
 
-    love.graphics.push()
-    love.graphics.translate(config.video.width / 2 - modeselector.oy + 10, 105)
-    love.graphics.circle('fill', 24, 24, 14)
-    love.graphics.setColor(0.2, 0.2, 0.8)
-    love.graphics.draw(sprites.ui_X, 0, 0)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.pop()
-    
     love.graphics.setFont(fonts.place)
     fonts.outlineText('Gamemode: ' .. modeselector.getModeString(), 0, 100, config.video.width, 'center')
     love.graphics.setFont(fonts.normal)
@@ -41,15 +39,9 @@ function modeselector.draw()
 
 
     love.graphics.translate(0, modeselector.ox + 20)
-    love.graphics.draw(sprites.ui_timeselector, config.video.width / 2, 100, -math.pi / 2, 1, 1, 60, modeselector.oy)
-
-    love.graphics.push()
-    love.graphics.translate(config.video.width / 2 - modeselector.oy + 10, 105)
-    love.graphics.circle('fill', 24, 24, 14)
-    love.graphics.setColor(0.8, 0.2, 0.2)
-    love.graphics.draw(sprites.ui_B, 0, 0)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.pop()
+    if modeselector.selectedRow == 2 then
+        love.graphics.draw(sprites.ui_timeselector, config.video.width / 2, 100, -math.pi / 2, 1, 1, 60, modeselector.oy)
+    end
 
     love.graphics.setFont(fonts.place)
     fonts.outlineText('Time: ' .. tostring(modeselector.mins) .. ' minutes', 0, 100, config.video.width, 'center')
@@ -85,36 +77,44 @@ end
 function modeselector.update()
     if not pregame.gameModeSelected then
         modeselector.timeout = decrease(modeselector.timeout)
-        modeselector.xtimeout = decrease(modeselector.xtimeout)
-        modeselector.btimeout = decrease(modeselector.btimeout)
+        modeselector.moveTimeout = decrease(modeselector.moveTimeout)
         modeselector.ty = 150
         if controller.A ~= nil then
             if controller.A.isADown() and modeselector.timeout == 0 then
                 pregame.modeSet()
             end
 
-            if controller.A.isXDown() and modeselector.xtimeout == 0 then
-                modeselector.nextMode()
-            end
+            local vVal = controller.A.getLeftY()
+            local hVal = controller.A.getLeftX()
+            if vVal < -0.5 or controller.A.isDPUp() then modeselector.selectedRow = 1
+            elseif vVal > 0.5 or controller.A.isDPDown() then modeselector.selectedRow = 2 end
 
-            if controller.A.isBDown() and modeselector.btimeout == 0 then
-                modeselector.nextTime()
-            end
+            if hVal > 0.5 or controller.A.isDPRight() then modeselector.move(1)
+            elseif hVal < -0.5 or controller.A.isDPLeft() then modeselector.move(-1) end
         end
     else
         modeselector.ty = -5000
     end
 end
 
-function modeselector.nextMode()
-    if modeselector.mode == game.deathmatch then modeselector.mode = game.kingOfTheHill
-    elseif modeselector.mode == game.kingOfTheHill then modeselector.mode = game.captureTheFlag
-    else modeselector.mode = game.deathmatch end
-    modeselector.xtimeout = config.ui.moveTimeout
+function modeselector.move(dir)
+    if modeselector.moveTimeout > 0 then return
+    else modeselector.moveTimeout = config.ui.moveTimeout end
+
+    if modeselector.selectedRow == 1 then modeselector.moveMode(dir)
+    elseif modeselector.selectedRow == 2 then modeselector.moveTime(dir) end
 end
 
-function modeselector.nextTime()
-    modeselector.mins = modeselector.mins + 1
-    if modeselector.mins > 10 then modeselector.mins = 1 end
-    modeselector.btimeout = config.ui.moveTimeout
+function modeselector.moveMode(dir)
+    modeselector.modeIndex = modeselector.modeIndex + dir
+    if modeselector.modeIndex > #modeselector.modes then modeselector.modeIndex = 1
+    elseif modeselector.modeIndex < 1 then modeselector.modeIndex = #modeselector.modes end
+    modeselector.mode = modeselector.modes[modeselector.modeIndex]
+end
+
+function modeselector.moveTime(dir)
+    modeselector.timeIndex = modeselector.timeIndex + dir
+    if modeselector.timeIndex > #modeselector.times then modeselector.timeIndex = 1
+    elseif modeselector.timeIndex < 1 then modeselector.timeIndex = #modeselector.times end
+    modeselector.mins = modeselector.times[modeselector.timeIndex]
 end

@@ -6,6 +6,10 @@ game = {
     kingOfTheHill = 'kingofthehill',
     captureTheFlag = 'captureTheFlag'
 } 
+game.startAlerts = {}
+game.startAlerts[game.deathmatch] = 'Fight!'
+game.startAlerts[game.captureTheFlag] = 'Steal!'
+game.startAlerts[game.kingOfTheHill] = 'Conquer!'
 game.mode = game.deathmatch
 game.roundTime = config.game.kothTime
 
@@ -21,7 +25,7 @@ function game.load()
         game.queueAlert('3', 1)
         game.queueAlert('2', 1)
         game.queueAlert('1', 1)
-        game.queueAlert('Fight!', 1)
+        game.queueAlert(game.startAlerts[game.mode], 1)
     else
         game.running = true
     end
