@@ -3,8 +3,12 @@ collisions.point = hc.circle(0, 0, 5) -- this collider is used to probe for obje
 
 function collisions.handleShip(ship)
     for shape, delta in pairs(hc.collisions(ship.collider)) do
-        if shape.class == 'land' then
+        if shape.class == 'land' or shape.class == 'spawn' then
             collisions.resolve(ship, delta, 1, 0.2)
+
+            if shape.class == 'spawn' and game.mode == game.captureTheFlag then
+                spawns.stealFlag(shape.parent, ship)
+            end
         elseif shape.class == 'border' then
             collisions.resolve(ship, delta, 0.03, 0.9)
         end
@@ -89,7 +93,7 @@ end
 
 function collisions.handlePowerup(powerup)
     for shape, delta in pairs(hc.collisions(powerup.collider)) do
-        if shape.class == 'land' then
+        if shape.class == 'land' or shape.class == 'spawn' then
             powerups.remove(powerup)
         elseif shape.class == 'tornado' or shape.class == 'shockwave' then
             sounds.woodBreak()
@@ -108,7 +112,7 @@ end
 function collisions.isTransparentForBullets(class)
     if class == 'bullet' or class == 'border' or class == 'shockwave' then return true
     elseif class == 'tornado' or class == 'center' or class =='land' then return true
-    elseif class == 'flag' then return true
+    elseif class == 'flag' or class == 'spawn' then return true
     end
     return false 
 end

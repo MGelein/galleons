@@ -11,7 +11,7 @@ config = {
     deadzone = 0.15, -- controller deadzone
     useTransitions = false,
     fullFontOutlining = false,
-    useGameCountdown = true,
+    useGameCountdown = false,
 
     ui = {
         moveTimeout = 10,

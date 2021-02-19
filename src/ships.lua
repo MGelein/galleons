@@ -299,6 +299,7 @@ function ships.new(player, colorName)
     
     local spawn = spawns.get(ship.letter)
     spawn.color = ship.color
+    spawn.colorName = ship.namedColor
     spawns.addFlag(spawn, colorName)
     ships.setSpawn(ship, spawn.x, spawn.y, spawn.r - math.pi2)
     ships.damage(ship, 0)
@@ -377,6 +378,10 @@ end
 
 function ships.setPowerup(ship, powerup)
     ship.powerup = powerup
+    if powerup == 'none' then 
+        gui.setLeftIcon(ship.canvas.ui, nil)
+        return
+    end
     gui.setLeftIcon(ship.canvas.ui, powerups.definitions[powerup].sprite)
     if powerup == 'mine' then ship.mines = config.powerups.mineAmt end
 end

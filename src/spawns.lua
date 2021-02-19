@@ -26,6 +26,7 @@ function spawns.createNumber(index)
         ox = w2,
         oy = w2,
         color = {r = 255, g = 255, b = 255},
+        colorName = '',
         
         flagAngle = love.math.random() * math.pi / 2,
         flagTime = love.math.random() * math.pi,
@@ -39,7 +40,7 @@ function spawns.createNumber(index)
     }
     spawn.collider = hc.rectangle(-w2 * .75, -w2 * .75, w2 * 1.5, w2 * 1.5)
     spawn.collider.parent = spawn
-    spawn.collider.class = 'land'
+    spawn.collider.class = 'spawn'
     spawn.collider:moveTo(spawn.x, spawn.y)
     spawn.collider:rotate(spawn.r)
     return spawn
@@ -82,11 +83,11 @@ function spawns.drawFlag(flag, x, y, r)
 end
 
 function spawns.addFlag(spawn, color)
-    if spawn.flag1 == 'none' then spawn.flag1 = color
-    elseif spawn.flag2 == 'none' then spawn.flag2 = color
-    elseif spawn.flag3 == 'none' then spawn.flag3 = color
-    elseif spawn.flag4 == 'none' then spawn.flag4 = color
-    elseif spawn.flag5 == 'none' then spawn.flag5 = color
+    if spawn.flag1 == 'none' and spawn.flag1 ~= color then spawn.flag1 = color
+    elseif spawn.flag2 == 'none' and spawn.flag2 ~= color then spawn.flag2 = color
+    elseif spawn.flag3 == 'none' and spawn.flag3 ~= color then spawn.flag3 = color
+    elseif spawn.flag4 == 'none' and spawn.flag4 ~= color then spawn.flag4 = color
+    elseif spawn.flag5 == 'none' and spawn.flag5 ~= color then spawn.flag5 = color
     end
 end
 
@@ -113,6 +114,21 @@ function spawns.getFlag(spawn)
         return temp
     else
         return 'none'
+    end
+end
+
+function spawns.stealFlag(spawn, ship)
+    if ship.color == spawn.color then 
+        if string.find(ship.powerup, 'Flag') then
+            local color = string.gsub(ship.powerup, 'Flag', '')
+            ships.setPowerup(ship, 'none')
+            spawns.addFlag(spawn, color)
+        end 
+    else
+        if ship.powerup == 'none' then
+            local flag = spawns.getFlag(spawn) .. 'Flag'
+            ships.setPowerup(ship, flag)
+        end
     end
 end
 

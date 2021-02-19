@@ -10,8 +10,8 @@ game.startAlerts = {}
 game.startAlerts[game.deathmatch] = 'Fight!'
 game.startAlerts[game.captureTheFlag] = 'Steal!'
 game.startAlerts[game.kingOfTheHill] = 'Conquer!'
-game.mode = game.deathmatch
-game.roundTime = config.game.kothTime
+game.mode = game.captureTheFlag
+game.roundTime = config.game.ctfTime
 
 -- IDEAS FOR GAMEMODES
 -- Treasure Hunt (robbing merchants and other players or finding coins?)

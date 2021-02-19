@@ -34,7 +34,7 @@ function countdown.update()
     if countdown.s < 1.01 then countdown.s = 1 end
     
     if game.running then
-        if game.mode == game.deathmatch then countdown.updateTimer()
+        if game.mode == game.deathmatch or game.mode == game.captureTheFlag then countdown.updateTimer()
         elseif game.mode == game.kingOfTheHill and level.king ~= nil then countdown.updateTimer() end
     end
     
