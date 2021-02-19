@@ -119,11 +119,14 @@ function spawns.getFlag(spawn)
 end
 
 function spawns.countFlags()
+    local hiscore = 0
     for name, spawn in pairs(spawns.list) do
         local score = spawns.countFlagsFor(spawn)
+        if score > hiscore then hiscore = score end
         local ship = ships.getBySpawn(spawn)
         if ship then ship.score = score end
     end
+    if hiscore == #ships.list then game.stop() end
 end
 
 function spawns.countFlagsFor(spawn)
