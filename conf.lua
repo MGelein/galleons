@@ -21,9 +21,9 @@ config = {
         fxVolume = 0.5,
         musicVolume = 0.5,
         ambienceVolume = 0.1,
-        fxMult = 1,
-        musicMult = 1,
-        ambienceMult = 1,
+        fxMult = 0.9,
+        musicMult = 0.9,
+        ambienceMult = 0.9,
     },
 
     video = {
