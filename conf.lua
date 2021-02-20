@@ -1,9 +1,9 @@
 config = {
     window = {
-        width = 1920,
-        height = 1080,
+        width = 1280,
+        height = 720,
         title = 'Galleons',
-        fullscreen = true, -- if fullscreen is set, the window size becomes useless
+        fullscreen = false, -- if fullscreen is set, the window size becomes useless
         dpiScale = 1.0, -- this can be fixed by changing the compatability settings for the .exe
     },
     showFPS = false,

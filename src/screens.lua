@@ -32,6 +32,9 @@ function screens.setResolution(x, y)
     love.window.setFullscreen(config.window.fullscreen, 'desktop')
     config.window.width = love.graphics:getWidth()
     config.window.height = love.graphics:getHeight()
+    if config.window.width ~= x or config.window.height ~= y then
+        screens.setResolution(config.window.width, config.window.height)
+    end
 end
 
 function screens.new(xPos, yPos, width, height)
