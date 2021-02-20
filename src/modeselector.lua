@@ -27,6 +27,7 @@ function modeselector.draw()
     modeselector.y = modeselector.y + (modeselector.ty - modeselector.y) * 0.1
     love.graphics.push()
     love.graphics.translate(0, modeselector.y)
+    gui.useFontColor()
 
     if modeselector.selectedRow == 1 then
         love.graphics.draw(sprites.ui_playerselector_bg, config.video.width / 2, 100, -math.pi / 2, 1, 1, modeselector.ox, modeselector.oy)
@@ -46,6 +47,7 @@ function modeselector.draw()
     love.graphics.setFont(fonts.place)
     fonts.outlineText('Time: ' .. tostring(modeselector.mins) .. ' minutes', 0, 100, config.video.width, 'center')
     
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.pop()
 end
 

@@ -22,9 +22,11 @@ function countdown.calculatePosition()
 end
 
 function countdown.draw()
+    gui.useFontColor()
     love.graphics.draw(countdown.sprite, countdown.x, countdown.y, 0, countdown.s, countdown.s, countdown.ox, countdown.oy)
     love.graphics.setFont(fonts.countdown)
     fonts.outlineText(countdown.timeString, 0, countdown.y - countdown.oy + 10, config.video.width, 'center')
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 function countdown.update()

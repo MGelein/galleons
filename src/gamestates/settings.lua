@@ -41,11 +41,13 @@ function settings.draw()
 
     love.graphics.push()
     love.graphics.translate(0, settings.marginTop)
+    gui.useFontColor()
     settings.drawResolution()
     settings.drawFullscreen()
     settings.drawSlider('Music Volume: ', settings.musicMult, 3)
     settings.drawSlider('Ambience Volume: ', settings.ambienceMult, 4)
     settings.drawSlider('Effects Volume: ', settings.fxMult, 5)
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.pop()
 end
 
@@ -132,14 +134,12 @@ function settings.drawButtonPrompts()
     love.graphics.circle('fill', 25, 45, 10)
     love.graphics.setColor(0.2, 0.8, 0.2)
     love.graphics.draw(sprites.ui_A, 0, 20)
-    love.graphics.setColor(1, 1, 1, 1)
     fonts.outlineText('Apply', 50, 15, 800, 'left')
     
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.circle('fill', 325, 45, 10)
     love.graphics.setColor(0.8, 0.8, 0.2)
     love.graphics.draw(sprites.ui_Y, 300, 20)
-    love.graphics.setColor(1, 1, 1, 1)
     
     fonts.outlineText('Main Menu', 350, 15, 800, 'left')
     love.graphics.pop()
@@ -184,6 +184,7 @@ function settings.drawFullscreen()
 end
 
 function settings.drawSlider(name, value, row)
+    gui.useFontColor()
     if settings.selectedRow == row then
         love.graphics.draw(sprites.ui_timeselector, config.video.width / 2, 0, -math.pi / 2, 1, 1.25, 60, modeselector.oy)
     end
@@ -193,4 +194,5 @@ function settings.drawSlider(name, value, row)
     love.graphics.rectangle('line', left, 20, config.video.width / 5, 25)
     love.graphics.rectangle('fill', left, 20, (config.video.width / 5) * value, 25)
     love.graphics.translate(0, settings.spacing)
+    love.graphics.setColor(1, 1, 1, 1)
 end

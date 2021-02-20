@@ -9,12 +9,14 @@ config = {
     showFPS = false,
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
-    useTransitions = true,
-    fullFontOutlining = true,
+    useTransitions = false,
+    fullFontOutlining = false,
     useGameCountdown = true,
 
     ui = {
         moveTimeout = 10,
+        col = {r = 0.65, g = 0.4, b = 0.2, a = 1},
+        shd = {r = 0.2, g = 0.2, b = 0.2, a = 1}
     },
 
     audio = {

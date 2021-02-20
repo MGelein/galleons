@@ -41,15 +41,19 @@ function gui.setHeartParts(ui, heartParts)
 end
 
 function gui.draw(ui, w, h)
-    love.graphics.setColor(1, 1, 1, ui.leftAlpha)
+    gui.useFontColorWithAlpha(ui.leftAlpha)
     gui.drawIcon(sprites.ui_tile, 10, 10, ui.leftScale, 0)
+    love.graphics.setColor(1, 1, 1, 1)
     gui.drawIcon(ui.leftIcon, 18, 15, ui.leftScale, 0)
+    gui.useFontColorWithAlpha(ui.leftAlpha)
     gui.drawIcon(sprites.ui_tileL1, 10, 10, ui.leftScale, 0)
     
-    love.graphics.setColor(1, 1, 1, ui.rightAlpha)
+    gui.useFontColorWithAlpha(ui.rightAlpha)
     local offset = sprites.ui_tileR1:getWidth() * ui.rightScale
     gui.drawIcon(sprites.ui_tile, w - 10, 10, ui.rightScale, offset)
+    love.graphics.setColor(1, 1, 1, 1)
     gui.drawIcon(ui.rightIcon, w - 10, 23, ui.rightScale * .8, offset)
+    gui.useFontColorWithAlpha(ui.rightAlpha)
     gui.drawIcon(sprites.ui_tileR1, w - 10, 10, ui.rightScale, offset)
 
     love.graphics.setColor(1, 1, 1, 1)
@@ -57,6 +61,7 @@ function gui.draw(ui, w, h)
     gui.drawIcon(ui.hearts[2], w / 2, 10, 1, ui.heartox)
     gui.drawIcon(ui.hearts[3], w / 2 + 40, 10, 1, ui.heartox)
     
+    gui.useFontColor()
     love.graphics.setFont(fonts.place)
     gui.drawOutlinedString(ui, w - 10, h - 10)
     love.graphics.setColor(1, 1, 1, 1)
@@ -77,6 +82,16 @@ function gui.drawOutlinedString(ui, x, y)
     local offset = minimap.size
     love.graphics.draw(sprites.ui_tile_wide, x - offset, y - offset / 2)
     fonts.outlineText(string, x - offset, y + 10 - offset / 2, minimap.size, 'center')
+end
+
+function gui.useFontColor()
+    local c = config.ui.col
+    love.graphics.setColor(c.r, c.g, c.b, c.a)
+end
+
+function gui.useFontColorWithAlpha(a)
+    local c = config.ui.col
+    love.graphics.setColor(c.r, c.g, c.b, a)
 end
 
 function gui.getPlaceName(place)

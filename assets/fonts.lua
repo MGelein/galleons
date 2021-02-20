@@ -14,11 +14,9 @@ fonts = {
 }
 fonts.countdown = fonts.place
 
-fonts.shadow = sprites.colorFromName.black
-
 function fonts.outlineText(text, x, y, limit, align)
     local r, g, b, a = love.graphics.getColor()
-    love.graphics.setColor(fonts.shadow.r, fonts.shadow.g, fonts.shadow.b, 1)
+    love.graphics.setColor(config.ui.shd.r, config.ui.shd.g, config.ui.shd.b, config.ui.shd.a)
     love.graphics.printf(text, x + 1, y + 1, limit, align)
     if config.fullFontOutlining then
         love.graphics.printf(text, x + 1, y + 0, limit, align)
@@ -30,6 +28,7 @@ function fonts.outlineText(text, x, y, limit, align)
         love.graphics.printf(text, x - 1, y + 0, limit, align)
         love.graphics.printf(text, x - 1, y - 1, limit, align)
     end
-    love.graphics.setColor(r, g, b, a)
+    gui.useFontColor()
     love.graphics.printf(text, x, y, limit, align)
+    love.graphics.setColor(r, g, b, a)
 end

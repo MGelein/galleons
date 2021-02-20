@@ -5,6 +5,7 @@ minimap.margin = 10
 function minimap.draw(w, h)
     love.graphics.push()
     love.graphics.translate(minimap.margin, h - minimap.margin - minimap.size)
+    gui.useFontColor()
     love.graphics.draw(sprites.ui_minimap_bg)
 
     for name, spawn in pairs(spawns.list) do

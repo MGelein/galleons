@@ -102,6 +102,7 @@ function playerselectors.draw()
 end
 
 function playerselectors.drawSingle(selector)
+    gui.useFontColor()
     love.graphics.setFont(fonts.normal)
     love.graphics.draw(sprites.ui_playerselector_bg, 10, 0)
     if selector.waiting then
@@ -109,6 +110,7 @@ function playerselectors.drawSingle(selector)
     else
         fonts.outlineText('Player ' .. selector.letter, 10, 32, 280, 'center')
 
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.draw(selector.sprite, 155, 200, 0, 1, 1, playerselectors.spriteox, playerselectors.spriteoy)
         fonts.outlineText(ships.nameFromColor[selector.colorName], 10, 300, 280, 'center')
         
@@ -121,6 +123,8 @@ function playerselectors.drawSingle(selector)
             msg = 'to cancel'
             col = {r = 0.8, g = 0.2, b = 0.2, a = 1} 
         end
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.circle('fill', 145, 480, playerselectors.iconox / 2)
         love.graphics.setColor(col.r, col.g, col.b, col.a)
         love.graphics.draw(icon, 145, 480, 0, 1, 1, playerselectors.iconox, playerselectors.iconoy)
         love.graphics.setColor(1, 1, 1, 1)
@@ -131,7 +135,7 @@ function playerselectors.drawSingle(selector)
             love.graphics.draw(sprites.ui_arrow, 250, 200, 0, 1, 1, playerselectors.arrowox, playerselectors.arrowoy)
             love.graphics.draw(sprites.ui_arrow, 50, 200, math.pi, 1, 1, playerselectors.arrowox, playerselectors.arrowoy)
         else
-            love.graphics.setColor(1, 1, 1, 1)
+            gui.useFontColor()
             love.graphics.draw(sprites.ui_tile_wide, 70, -80)
             fonts.outlineText('Ready!', 10, -65, 280, 'center')
         end
