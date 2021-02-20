@@ -85,6 +85,7 @@ config = {
 }
 
 function config.createWindow()
+    love.mouse.setVisible(false)
     love.window.setTitle(config.window.title)
     screens.setResolution(config.window.width, config.window.height)
 end
