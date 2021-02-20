@@ -34,7 +34,7 @@ function pregame.update(dt)
         gamestates.setActive(game)
     end
 
-    if controller.A ~= nil then
+    if controller.A ~= nil and not playerselectors.isEveryoneReady() then
         if controller.A.isYDown() then
             gamestates.setActive(mainmenu)
         end

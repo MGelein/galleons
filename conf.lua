@@ -10,7 +10,7 @@ config = {
     showColliders = false,
     deadzone = 0.15, -- controller deadzone
     useTransitions = true,
-    fullFontOutlining = false,
+    fullFontOutlining = true,
     useGameCountdown = true,
 
     ui = {

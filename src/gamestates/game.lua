@@ -1,6 +1,6 @@
 game = {
     running = false,
-    players = {A = 'green', B = 'red'},
+    players = {A = 'black', B = 'white'},
     alerts = {},
     deathmatch = 'deathmatch',
     kingOfTheHill = 'kingofthehill',

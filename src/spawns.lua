@@ -148,8 +148,8 @@ function spawns.stealFlag(spawn, ship)
         end 
     else
         if ship.powerup == 'none' then
-            local flag = spawns.getFlag(spawn) .. 'Flag'
-            ships.setPowerup(ship, flag)
+            local flag = spawns.getFlag(spawn)
+            if flag ~= 'none' then ships.setPowerup(ship, flag .. 'Flag') end
         end
     end
 end
