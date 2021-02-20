@@ -48,8 +48,15 @@ function settings.update(dt)
     end
 end
 
+function settings.apply()
+    config.window.fullscreen = settings.fullscreen
+    local res = settings.resolutions[settings.resolutionIndex]
+    screens.setResolution(res.width, res.height)
+end
+
 function settings.parseControlInput(controller)
     if controller.isYDown() then gamestates.setActive(mainmenu) end
+    if controller.isADown() then settings.apply() end
 
     local vVal = controller.getLeftY()
     if vVal > 0.5 or controller.isDPDown() then settings.moveRow(1)
@@ -64,7 +71,8 @@ function settings.moveH(dir)
     if settings.moveTimeout > 0 then return end
     settings.moveTimeout = config.ui.moveTimeout
 
-    if settings.selectedRow == 2 then settings.fullscreen = not settings.fullscreen end
+    if settings.selectedRow == 1 then settings.moveResolution(dir)
+    elseif settings.selectedRow == 2 then settings.fullscreen = not settings.fullscreen end
 end
 
 function settings.moveRow(dir)
@@ -103,6 +111,12 @@ function settings.getResolutionIndex()
         if res.width == w and res.height == h then return i end
     end
     return 1
+end
+
+function settings.moveResolution(dir)
+    settings.resolutionIndex = settings.resolutionIndex + dir
+    if settings.resolutionIndex > #settings.resolutions then settings.resolutionIndex = 1
+    elseif settings.resolutionIndex < 1 then settings.resolutionIndex = #settings.resolutions end
 end
 
 function settings.drawResolution()
