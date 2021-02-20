@@ -96,18 +96,24 @@ function settings.moveFXMult(dir)
     settings.fxMult = settings.fxMult + dir * 0.05
     if settings.fxMult < 0 then settings.fxMult = 0
     elseif settings.fxMult > 1 then settings.fxMult = 1 end
+    config.audio.fxMult = settings.fxMult
+    sounds.updateVolumes()
 end
 
 function settings.moveMusicMult(dir)
     settings.musicMult = settings.musicMult + dir * 0.05
     if settings.musicMult < 0 then settings.musicMult = 0
     elseif settings.musicMult > 1 then settings.musicMult = 1 end
+    config.audio.musicMult = settings.musicMult
+    sounds.updateVolumes()
 end
 
 function settings.moveAmbienceMult(dir)
     settings.ambienceMult = settings.ambienceMult + dir * 0.05
     if settings.ambienceMult < 0 then settings.ambienceMult = 0
     elseif settings.ambienceMult > 1 then settings.ambienceMult = 1 end
+    config.audio.ambienceMult = settings.ambienceMult
+    sounds.updateVolumes()
 end
 
 function settings.moveRow(dir)

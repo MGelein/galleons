@@ -56,6 +56,11 @@ local function stopAndPlay(source)
 end
 sounds.stopAndPlay = stopAndPlay
 
+function sounds.updateVolumes()
+    sounds.bgm:setVolume(config.audio.musicVolume * config.audio.musicMult)
+    sounds.sea:setVolume(config.audio.ambienceVolume * config.audio.ambienceMult)
+end
+
 function sounds.shoot()
    local shotIndex = math.floor(love.math.random() * 4) + 1
    if shotIndex == 1 then stopAndPlay(sounds.shoot1)
@@ -118,7 +123,6 @@ end
 
 function sounds.stopAmbience()
     sounds.sea:stop()
-    sounds.battle:stop()
 end
 
 function sounds.playTransition()
