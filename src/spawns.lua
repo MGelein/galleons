@@ -84,11 +84,12 @@ function spawns.drawFlag(flag, x, y, r)
 end
 
 function spawns.addFlag(spawn, color)
-    if spawn.flag1 == 'none' and spawn.flag1 ~= color then spawn.flag1 = color
-    elseif spawn.flag2 == 'none' and spawn.flag2 ~= color then spawn.flag2 = color
-    elseif spawn.flag3 == 'none' and spawn.flag3 ~= color then spawn.flag3 = color
-    elseif spawn.flag4 == 'none' and spawn.flag4 ~= color then spawn.flag4 = color
-    elseif spawn.flag5 == 'none' and spawn.flag5 ~= color then spawn.flag5 = color
+    if flags.colorToPowerup[color] == nil then return end
+    if spawn.flag1 == 'none' then spawn.flag1 = color
+    elseif spawn.flag2 == 'none' then spawn.flag2 = color
+    elseif spawn.flag3 == 'none' then spawn.flag3 = color
+    elseif spawn.flag4 == 'none' then spawn.flag4 = color
+    elseif spawn.flag5 == 'none' then spawn.flag5 = color
     end
 end
 
