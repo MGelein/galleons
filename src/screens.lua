@@ -55,9 +55,11 @@ function screens.new(xPos, yPos, width, height)
         shake = {x = 0, y = 0, vx = 0, vy = 0, frames = 0},
         follow = ships.get(character),
     }
-    screen.follow.canvas = screen
-    screen.ui.accentColor = screen.follow.color
-    gui.setHeartParts(screen.ui, screen.follow.health)
+    if screen.follow then
+        screen.follow.canvas = screen
+        screen.ui.accentColor = screen.follow.color
+        gui.setHeartParts(screen.ui, screen.follow.health)
+    end
     table.insert(screens.list, screen)
     return screen
 end
